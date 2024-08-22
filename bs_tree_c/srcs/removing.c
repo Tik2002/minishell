@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 21:56:14 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/19 16:32:49 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:29:08 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	remove_tr(t_bs_tree_ptr tree, char *key)
 {
 	if (empty_tr(tree))
 		return ;
-	tree->size--;
+	if (get_tr(tree, key))
+		tree->size--;
 	tree->root = __remove_tr__(tree->root, key);
 }
 

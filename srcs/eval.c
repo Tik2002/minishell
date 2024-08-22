@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:10:09 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/20 16:25:20 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:31:22 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ void	__eval_container__(t_as_tree_node *root)
 void	ft_eval_container(t_container *container)
 {
 	__eval_container__(container->as_tree->root);
+	while (-1 != wait(NULL))
+		;
 }

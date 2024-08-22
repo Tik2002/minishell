@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:48:45 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 19:58:46 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:14:35 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	**tree_to_matrix_tr(t_bs_tree_ptr tree)
 
 	i = 0;
 	res = wrapper_malloc(sizeof(char *) * (tree->size + 1));
-	printf("%d\n", tree->size);
 	res[tree->size] = NULL;
 	__tree_to_matrix_tr__(tree->root, res, &i);
 	return (res);
