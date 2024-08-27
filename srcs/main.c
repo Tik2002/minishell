@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:52 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/27 16:00:11 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:49:01 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ int	main(int argc, char *argv[], char **env)
 		_err("The invalid amount of arguments");
 	ft_init_minishell(&minishell, env);
 	ft_minishell(&minishell);
-	system("leaks minishell");
 	return (0);
 }

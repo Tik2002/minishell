@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:13:50 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 18:29:50 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:49:12 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	__exit__(int status, char *msg, t_cmd_matrix *mtx)
 		return ;
 	ft_clear_minishell(mtx->minishell);
 	ft_clear_container(&mtx->container);
-	system("leaks minishell");
 	exit(get_status());
 }
 
