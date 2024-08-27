@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:42:29 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 11:58:42 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:32:25 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	ft_env(t_command *cmd)
 
 	status = 0;
 	if (!cmd->args.head && !cmd->opts.head)
+	{
+		update_tr(cmd->minishell->export, "_", "env", true);
 		print_tr_custom(cmd->minishell->export, __print_env__);
+		remove_tr(cmd->minishell->export, "_");
+	}
 	else if (cmd->opts.head)
 	{
 		ft_err_msg("env: no option required!!!");
@@ -30,14 +34,4 @@ void	ft_env(t_command *cmd)
 		status = 127;
 	}
 	set_status_unsigned(status);
-}
-
-char	**ft_get_path(char *path)
-{
-	char	**path_mtx;
-
-	if (!path)
-		return (NULL);
-	path_mtx = ft_split(path, ':');
-	return (path_mtx);
 }

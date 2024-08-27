@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"typeinfo": "c",
-		"iterator": "c"
+		"iterator": "c",
+		"chrono": "c"
 	}
 }

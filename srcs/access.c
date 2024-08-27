@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:59:27 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 15:47:22 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:44:59 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static char	*path_for_exec(char *current_cmd, char **path)
 
 	i = -1;
 	cmd = ft_strdup(current_cmd);
-	if (!access(cmd, X_OK | F_OK))
+	printf("%s\n", cmd);
+	if (cmd[0] == '.' || !access(cmd, X_OK | F_OK))
 		return (cmd);
-	while (path[++i])
+	while (path && path[++i])
 	{
 		free(cmd);
 		tmp = ft_strjoin(path[i], "/");
@@ -47,7 +48,7 @@ bool	ft_check_access(t_command *cmd, bool *flag)
 		return (true);
 	path_mtx = ft_get_path(get_tr(cmd->minishell->export, "PATH"));
 	if (!path_mtx)
-		return (false);
+		path_mtx = NULL;
 	tmp = path_for_exec(cmd->name, path_mtx);
 	if (tmp)
 	{
@@ -56,7 +57,7 @@ bool	ft_check_access(t_command *cmd, bool *flag)
 		cmd->name = tmp;
 	}
 	i = -1;
-	while (path_mtx[++i])
+	while (path_mtx && path_mtx[++i])
 		free(path_mtx[i]);
 	free(path_mtx);
 	return (true);
