@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:31:07 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:52:23 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:10:37 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static bool	__check__(char *val)
 	i = -1;
 	if (ft_check_cmp(val, "-n"))
 		return (true);
-	if (val[++i] == '-')
+	if (val[++i] == '-' && val[++i] == 'n')
 	{
-		while(val[++i])
+		while (val[++i])
 		{
 			if (val[i] != 'n')
 				return (false);

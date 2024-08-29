@@ -1,5 +1,96 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/tigpetro/Desktop/42cursus/minishell'
-make: Nothing to be done for `all'.
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/access.c -o srcs/access.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/append.c -o srcs/append.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/builtins.c -o srcs/builtins.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/cd.c -o srcs/cd.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/check_script.c -o srcs/check_script.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+ 
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/check_syntax.c -o srcs/check_syntax.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/clear_shell.c -o srcs/clear_shell.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/commands.c -o srcs/commands.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/delimitors.c -o srcs/delimitors.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/descriptor.c -o srcs/descriptor.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/echo.c -o srcs/echo.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/env.c -o srcs/env.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/eval.c -o srcs/eval.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/exec.c -o srcs/exec.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/exit.c -o srcs/exit.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/export.c -o srcs/export.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/get_path.c -o srcs/get_path.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/handle_dollar_sign.c -o srcs/handle_dollar_sign.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/here_doc.c -o srcs/here_doc.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/history.c -o srcs/history.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/init_cmd.c -o srcs/init_cmd.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/init_container.c -o srcs/init_container.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/init_minishell.c -o srcs/init_minishell.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/key_utils.c -o srcs/key_utils.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/main.c -o srcs/main.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/merge_input.c -o srcs/merge_input.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/open.c -o srcs/open.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/pwd.c -o srcs/pwd.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/quotes.c -o srcs/quotes.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/redirection.c -o srcs/redirection.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/set.c -o srcs/set.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/signal_interactive.c -o srcs/signal_interactive.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/signal_noninteractive.c -o srcs/signal_noninteractive.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/signal_utils.c -o srcs/signal_utils.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/split_with_delimitors.c -o srcs/split_with_delimitors.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/status.c -o srcs/status.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/unset.c -o srcs/unset.o
+ 
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/utils.c -o srcs/utils.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/wildcard_util.c -o srcs/wildcard_util.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/wilrdcards.c -o srcs/wilrdcards.o
+echo "\033[1;33m Object files have been created \033[0;37m"
+make -C ./libft/ all
+echo "\033[1;33m Libfts object files have been created \033[0;37m"
+make -C ./list_c/ all
+echo "\033[1;33m Lists object files have been created \033[0;37m"
+make -C ./bs_tree_c/ all
+echo "\033[1;33m Binary search trees object files have been created \033[0;37m"
+make -C ./as_tree_c/ all
+echo "\033[1;33m Abstract syntax trees object files have been created \033[0;37m"
+gcc srcs/access.o srcs/append.o srcs/builtins.o srcs/cd.o srcs/check_script.o srcs/check_syntax.o srcs/clear_shell.o srcs/commands.o srcs/delimitors.o srcs/descriptor.o srcs/echo.o srcs/env.o srcs/eval.o srcs/exec.o srcs/exit.o srcs/export.o srcs/get_path.o srcs/handle_dollar_sign.o srcs/here_doc.o srcs/history.o srcs/init_cmd.o srcs/init_container.o srcs/init_minishell.o srcs/key_utils.o srcs/main.o srcs/merge_input.o srcs/open.o srcs/pwd.o srcs/quotes.o srcs/redirection.o srcs/set.o srcs/signal_interactive.o srcs/signal_noninteractive.o srcs/signal_utils.o srcs/split_with_delimitors.o srcs/status.o srcs/unset.o srcs/utils.o srcs/wildcard_util.o srcs/wilrdcards.o libft/libft.a list_c/list.a bs_tree_c/bs_tree.a as_tree_c/as_tree.a -g -lreadline -lncurses -Lreadline_local/lib -lreadline -o minishell
+echo "\033[1;32m Executable file has been created \033[0;37m"
 make: Leaving directory `/Users/tigpetro/Desktop/42cursus/minishell'
  
