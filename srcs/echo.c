@@ -6,11 +6,30 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:31:07 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 11:58:42 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:52:23 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static bool	__check__(char *val)
+{
+	int	i;
+
+	i = -1;
+	if (ft_check_cmp(val, "-n"))
+		return (true);
+	if (val[++i] == '-')
+	{
+		while(val[++i])
+		{
+			if (val[i] != 'n')
+				return (false);
+		}
+		return (true);
+	}
+	return (false);
+}
 
 void	ft_echo(t_command *cmd)
 {
@@ -20,7 +39,7 @@ void	ft_echo(t_command *cmd)
 	flag = true;
 	move_back_lt(&cmd->opts, &cmd->args);
 	curr = cmd->opts.head;
-	while (curr && ft_check_cmp(curr->val, "-n"))
+	while (curr && __check__(curr->val))
 		curr = curr->next;
 	if (curr == cmd->opts.head)
 		flag = false;

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 15:43:50 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	__check__(t_node **curr)
 {
 	if (!(*curr) || !(*curr)->next || ft_check_cmp((*curr)->next->val, ""))
 	{
-		ft_err_msg("ambiguous redirect!!!");
+		ft_err_msg("ambiguous redirect");
 		return (false);
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:10:38 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/17 15:55:32 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*__make_string__(char *str, int end)
 
 	res = ft_substr(str, 0, end);
 	if (!res)
-		_err("Malloc error!!!\n");
+		_err("Malloc error\n");
 	return (res);
 }
 

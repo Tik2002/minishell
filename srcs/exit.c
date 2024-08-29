@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:13:50 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:12 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:47:55 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ static bool	__get_status__(char *str, int *status)
 	return (true);
 }
 
-static void	__exit__(int status, char *msg, t_cmd_matrix *mtx)
+static void	__exit__(int status, char *msg, t_container *container, int size)
 {
 	set_status_unsigned(status);
 	if (*msg)
 		ft_err_msg(msg);
-	if (mtx->size > 1)
+	if (size > 1)
 		return ;
-	ft_clear_minishell(mtx->minishell);
-	ft_clear_container(&mtx->container);
+	ft_clear_minishell(container->minishell);
+	ft_clear_container(&container);
 	exit(get_status());
 }
 
@@ -77,16 +77,17 @@ void	ft_exit(t_cmd_matrix *cmd_mtx, int i)
 		if (__get_status__(cmd_mtx->cmds[i]->opts.head->val, &status))
 		{
 			if (cmd_mtx->cmds[i]->opts.size == 1)
-				__exit__(status, "", cmd_mtx);
+				__exit__(status, "", cmd_mtx->container, cmd_mtx->size);
 			else
 			{
-				ft_err_msg("exit: numeric argument required!!!");
+				ft_err_msg("exit: numeric argument required");
 				set_status_unsigned(1);
 				return ;
 			}
 		}
 		else
-			__exit__(255, "exit: numeric argument required!!!", cmd_mtx);
+			__exit__(255, "exit: numeric argument required",
+				cmd_mtx->container, cmd_mtx->size);
 	}
-	__exit__(status, "", cmd_mtx);
+	__exit__(status, "", cmd_mtx->container, cmd_mtx->size);
 }

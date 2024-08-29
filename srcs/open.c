@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:26:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/17 15:55:09 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	ft_open(int *fd, char *filename, int option)
 		*fd = open(filename, option, 0644);
 	if (*fd == -1)
 	{
-		ft_err_msg("no such file or directory!!!");
+		ft_err_msg("no such file or directory");
 		return (false);
 	}
 	return (true);

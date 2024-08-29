@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/22 12:25:11 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:45:11 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ struct						s_command
 	t_list					opts;
 	int						redirection;
 	t_descriptor			*descriptor;
+	pid_t					pid;
 };
 
 struct						s_cmd_matrix
@@ -153,12 +154,16 @@ void			ft_append(char **left, char *right);
 // eval
 void			ft_eval_container(t_container *container);
 
+// check_script
+bool			ft_check_script(char *script, t_bs_tree_ptr tree);
+
 // commands
 void			ft_eval_commands(t_cmd_matrix *cmd_matrix);
 bool			ft_check_cmp(char *s1, char *s2);
 
 // descriptor
 t_descriptor	*make_descriptors(void);
+void			ft_reset_descriptors(t_command *cmd);
 
 // redirection
 bool			ft_check_redirections(t_command *cmd, t_list_ptr list);
@@ -207,7 +212,8 @@ bool			ft_open(int *fd, char *filename, int option);
 bool			ft_heredoc(int *fd, char *delim, t_bs_tree_ptr export);
 
 // exec
-void			ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag);
+void			ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag,
+					int *pips);
 
 // echo
 void			ft_echo(t_command *cmd);

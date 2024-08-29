@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:53:34 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 16:02:12 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	ft_check_syntax(t_list_ptr line)
 	}
 	if (__check_cmp__(line->tail->val))
 	{
-		ft_err_msg("syntax error: unexpected end of line!!!");
+		ft_err_msg("syntax error: unexpected end of line");
 		return (false);
 	}
 	set_status_unsigned(0);

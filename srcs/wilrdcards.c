@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:59:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 13:14:53 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	__resolve_wildcards__(t_node *curr, t_list_ptr line)
 	d = opendir(".");
 	if (!d)
 	{
-		ft_err_msg("opendir error!!!");
+		ft_err_msg("opendir error");
 		return ;
 	}
 	init_lt(&tmp);

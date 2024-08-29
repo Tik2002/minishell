@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 22:03:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 18:47:08 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:43:12 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,15 @@ void	ft_clear_minishell(t_minishell *minishell)
 
 void	ft_clear_cmds(t_command **cmd)
 {
-	dup2((*cmd)->minishell->descriptor->stderr, STDERR_FILENO);
-	dup2((*cmd)->minishell->descriptor->stdout, STDOUT_FILENO);
-	dup2((*cmd)->minishell->descriptor->stdin, STDIN_FILENO);
+	ft_reset_descriptors(*cmd);
+	free((*cmd)->descriptor);
 	free((*cmd)->name);
 	(*cmd)->name = NULL;
+	(*cmd)->redirection = 0;
+	(*cmd)->pid = 0;
 	clear_lt(&(*cmd)->args);
 	clear_lt(&(*cmd)->opts);
 	(*cmd)->minishell = NULL;
-	close((*cmd)->descriptor->stderr);
-	close((*cmd)->descriptor->stdin);
-	close((*cmd)->descriptor->stdout);
-	free((*cmd)->descriptor);
 	(*cmd)->descriptor = NULL;
 	free(*cmd);
 	*cmd = NULL;

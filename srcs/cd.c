@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:08:10 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 18:03:47 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	__ft_cd__(char *path, int size)
 	{
 		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 		ft_putstr_fd(path, STDERR_FILENO);
-		ft_putendl_fd(": directory does not exist!!!", STDERR_FILENO);
+		ft_putendl_fd(": directory does not exist", STDERR_FILENO);
 		free(oldpwd);
 		return (false);
 	}
@@ -94,7 +94,7 @@ void	ft_cd(t_command *cmd, int size)
 		__eval__(cmd, oldpwd, &status, size);
 	else if (cmd->opts.head)
 	{
-		ft_err_msg("cd: no option required!!!");
+		ft_err_msg("cd: no option required");
 		status = 2;
 	}
 	set_status_unsigned(status);

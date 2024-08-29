@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:04:59 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 11:58:42 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	ft_history(t_command *cmd)
 	else if (cmd->opts.head)
 	{
 		set_status_unsigned(2);
-		ft_err_msg("history: no options required!!!");
+		ft_err_msg("history: no options required");
 	}
 	else if (cmd->args.head)
 	{
 		set_status_unsigned(1);
-		ft_err_msg("history: no argument required!!!");
+		ft_err_msg("history: no argument required");
 	}
 	else
 		ft_print_history(&cmd->minishell->history);

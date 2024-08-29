@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:59:27 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/27 18:44:59 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:46:02 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static char	*path_for_exec(char *current_cmd, char **path)
 
 	i = -1;
 	cmd = ft_strdup(current_cmd);
-	printf("%s\n", cmd);
 	if (cmd[0] == '.' || !access(cmd, X_OK | F_OK))
 		return (cmd);
 	while (path && path[++i])

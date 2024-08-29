@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 00:46:19 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 11:58:42 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_export(t_command *cmd, int size)
 		print_tr_custom(cmd->minishell->export, __print_exp__);
 	else if (cmd->opts.head)
 	{
-		ft_err_msg("export: no option required!!!");
+		ft_err_msg("export: no option required");
 		status = 2;
 	}
 	else

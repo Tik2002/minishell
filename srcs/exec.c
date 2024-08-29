@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/27 18:47:31 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:48:09 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,66 +34,40 @@ static void	__util__(char *name, char *err)
 	set_status_unsigned(127);
 }
 
-static bool	__more_check__(char *script)
+static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
 {
-	set_status_unsigned(0);
-	if (!access(script, F_OK | X_OK))
-		return (true);
-	if (access(script, F_OK))
-		__util__(script, ": No such file or directory");
-	else if (access(script, X_OK))
-		__util__(script, ": Permission denied");
-	set_status_unsigned(126);
-	return (false);
+	while (--index >= 0)
+	{
+		kill(cmd_mtx->cmds[index]->pid, SIGKILL);
+		waitpid(cmd_mtx->cmds[index]->pid, NULL, 0);
+		cmd_mtx->cmds[index]->pid = -1;
+	}
+	__util__("fork", ": Resource temporarily unavailable");
 }
 
-static bool	__check_script__(char *script, t_bs_tree_ptr tree)
+void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 {
-	if (ft_check_cmp(script, "."))
-	{
-		__util__(script, ": filename argument required");
-		set_status_unsigned(2);
-		return (false);
-	}
-	set_status_unsigned(126);
-	if (chdir(script) == 0)
-	{
-		chdir(get_tr(tree, "PWD"));
-		__util__(script, ": is a directory");
-		return (false);
-	}
-	if (ft_check_cmp(script + ft_strlen(script) - 1, "/"))
-	{
-		__util__(script, ": Not a directory");
-		return (false);
-	}
-	return (__more_check__(script));
-}
-
-void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag)
-{
-	pid_t	pid;
 	int		status;
 
-	status = 0;
 	if (!*flag || cmd_mtx->cmds[index]->name[0] == '.')
 	{
 		if (!*flag)
 			__util__(cmd_mtx->cmds[index]->name, ": command not found");
-		if (!*flag || !__check_script__(cmd_mtx->cmds[index]->name,
+		if (!*flag || !ft_check_script(cmd_mtx->cmds[index]->name,
 				cmd_mtx->minishell->export))
 			return ;
 	}
-	pid = fork();
-	if (pid < 0)
-		_err("ERROR!");
-	if (pid == 0)
+	cmd_mtx->cmds[index]->pid = fork();
+	if (cmd_mtx->cmds[index]->pid < 0)
+		return (__fork_error__(cmd_mtx, index));
+	if (cmd_mtx->cmds[index]->pid == 0)
 	{
+		close(pips[in]);
 		ft_execute_proc(cmd_mtx->cmds[index]);
 	}
 	if (index == cmd_mtx->size - 1)
 	{
-		waitpid(pid, &status, 0);
+		waitpid(cmd_mtx->cmds[index]->pid, &status, 0);
 		set_status_unsigned(WEXITSTATUS(status));
 	}
 }

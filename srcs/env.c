@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:42:29 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/26 15:32:25 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	ft_env(t_command *cmd)
 	}
 	else if (cmd->opts.head)
 	{
-		ft_err_msg("env: no option required!!!");
+		ft_err_msg("env: no option required");
 		status = 1;
 	}
 	else
 	{
-		ft_err_msg("env: no argument required!!!");
+		ft_err_msg("env: no argument required");
 		status = 127;
 	}
 	set_status_unsigned(status);

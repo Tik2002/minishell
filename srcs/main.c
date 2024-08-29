@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:52 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:01 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:42:19 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	__ft_minishell__(t_minishell *minishell, char *input)
 	t_container		*container;
 
 	if (!ft_delim(minishell->export, &minishell->line, "<>| \'\"()&", input))
-		ft_err_msg("quotes: quotes must be even!!!");
+		ft_err_msg("quotes: quotes must be even");
 	else if (empty_lt(&minishell->line))
 	{
 		set_status_signed(0);
@@ -59,7 +59,6 @@ static void	ft_minishell(t_minishell *minishell)
 		clear_lt(&minishell->line);
 		free(input);
 	}
-	ft_clear_minishell(minishell);
 	free(input);
 }
 
@@ -71,5 +70,7 @@ int	main(int argc, char *argv[], char **env)
 		_err("The invalid amount of arguments");
 	ft_init_minishell(&minishell, env);
 	ft_minishell(&minishell);
+	ft_clear_minishell(&minishell);
+	system("leaks minishell");
 	return (0);
 }

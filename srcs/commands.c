@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/19 22:05:37 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:47:31 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	__access_error__(char *cmd)
 		return ;
 	ft_err_msg("");
 	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putendl_fd(": no such file or directory!!!", STDERR_FILENO);
+	ft_putendl_fd(": no such file or directory", STDERR_FILENO);
 }
 
 static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
@@ -43,7 +43,7 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 	else
 	{
 		if (ft_check_access(cmd_matrix->cmds[i], flag))
-			ft_execute(cmd_matrix, i, flag);
+			ft_execute(cmd_matrix, i, flag, pips);
 		else
 			__access_error__(cmd_matrix->cmds[i]->name);
 	}
@@ -51,11 +51,6 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 	dup2(cmd_matrix->minishell->descriptor->stdout, STDOUT_FILENO);
 	close(pips[in]);
 	close(pips[out]);
-	if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
-	{
-		unlink(".heredoc.txt");
-		printf("\n");
-	}
 }
 
 void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
@@ -69,7 +64,16 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 	{
 		flag = false;
 		if (pipe(pips) < 0)
-			ft_err_msg("pipe: error!!!");
+			return (ft_err_msg("pipe: can't create pipe"));
 		__eval_commands__(cmd_matrix, pips, i, &flag);
+		if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
+		{
+			unlink(".heredoc.txt");
+			printf("\n");
+		}
+		if (cmd_matrix->cmds[0]->pid == -1)
+			return (set_status_unsigned(1));
 	}
+	while (-1 != wait(NULL))
+		;
 }
