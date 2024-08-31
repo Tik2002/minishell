@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:47:31 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:54:35 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 	{
 		flag = false;
 		if (pipe(pips) < 0)
-			return (ft_err_msg("pipe: can't create pipe"));
+			return (ft_err_msg("fork: Resource temporarily unavailable"));
 		__eval_commands__(cmd_matrix, pips, i, &flag);
 		if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
 		{
