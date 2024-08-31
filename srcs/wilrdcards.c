@@ -6,52 +6,19 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:59:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:27:19 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	__util__(t_list_ptr tmp, char *val, bool (*fptr)(char *, char *))
-{
-	t_node	*curr;
-	t_node	*next;
-
-	curr = tmp->head;
-	while (curr)
-	{
-		next = curr->next;
-		if (!fptr(curr->val, val))
-			remove_node_lt(tmp, curr);
-		curr = next;
-	}
-}
-
 static void	__resolve_with_chars__(t_list_ptr tmp, char *val)
 {
 	t_list	list;
-	t_node	*start;
-	int		count;
 
-	bool (*fptr)(char *, char *);
 	init_lt(&list);
 	ft_split_with_delim(&list, "*", val);
-	count = value_counter_lt(&list, "*");
-	start = list.head;
-	while (!empty_lt(tmp) && start)
-	{
-		if (!ft_check_cmp(start->val, "*"))
-		{
-			if (count > 0)
-				fptr = ft_str_contains;
-			else
-				fptr = ft_str_ends_with;
-			__util__(tmp, start->val, fptr);
-		}
-		else
-			count--;
-		start = start->next;
-	}
+	__resolve_with_chars_util__(tmp, &list);
 	clear_lt(&list);
 }
 

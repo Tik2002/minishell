@@ -10,7 +10,6 @@ gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/check_script.c -o srcs/check_script.o
 echo "\033[1;33m Object files have been created \033[0;37m"
- 
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/check_syntax.c -o srcs/check_syntax.o
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/clear_shell.c -o srcs/clear_shell.o
@@ -35,6 +34,7 @@ gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/get_path.c -o srcs/get_path.o
 echo "\033[1;33m Object files have been created \033[0;37m"
+ 
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/handle_dollar_sign.c -o srcs/handle_dollar_sign.o
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/here_doc.c -o srcs/here_doc.o
@@ -74,7 +74,6 @@ echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/status.c -o srcs/status.o
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/unset.c -o srcs/unset.o
- 
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/utils.c -o srcs/utils.o
 echo "\033[1;33m Object files have been created \033[0;37m"

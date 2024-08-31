@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/29 16:45:11 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:27:25 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void			ft_merge_input(t_list_ptr line);
 // wildcards
 void			ft_wildcards(t_list_ptr line);
 bool			__check_wildcards__(char *str);
+void			__resolve_with_chars_util__(t_list_ptr tmp, t_list_ptr list);
 
 // utils
 void			ft_split_to_list(t_list_ptr list, char del, char *input);

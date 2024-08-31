@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:13:50 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:47:55 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:46:16 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_exit(t_cmd_matrix *cmd_mtx, int i)
 				__exit__(status, "", cmd_mtx->container, cmd_mtx->size);
 			else
 			{
-				ft_err_msg("exit: numeric argument required");
+				ft_err_msg("exit: too many arguments");
 				set_status_unsigned(1);
 				return ;
 			}

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:48:09 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:09:36 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
 	__util__("fork", ": Resource temporarily unavailable");
 }
 
+static void	__wait_for_childs__(t_command *cmd, int *status)
+{
+	waitpid(cmd->pid, status, 0);
+	if (WIFSIGNALED(*status))
+	{
+		*status = WTERMSIG(*status) + 128;
+		if (*status == 131)
+			write(1, "Quit: 3\n", 9);
+		return (set_status_unsigned(*status));
+	}
+	set_status_unsigned(WEXITSTATUS(*status));
+}
+
 void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 {
 	int		status;
@@ -67,7 +80,6 @@ void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 	}
 	if (index == cmd_mtx->size - 1)
 	{
-		waitpid(cmd_mtx->cmds[index]->pid, &status, 0);
-		set_status_unsigned(WEXITSTATUS(status));
+		__wait_for_childs__(cmd_mtx->cmds[index], &status);
 	}
 }
