@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 13:09:36 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:49:12 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
 {
 	while (--index >= 0)
 	{
-		kill(cmd_mtx->cmds[index]->pid, SIGKILL);
+		if (cmd_mtx->cmds[index]->pid > -2)
+			kill(cmd_mtx->cmds[index]->pid, SIGKILL);
 		waitpid(cmd_mtx->cmds[index]->pid, NULL, 0);
 		cmd_mtx->cmds[index]->pid = -1;
 	}

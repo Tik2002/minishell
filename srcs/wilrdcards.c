@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:59:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 13:27:19 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:44:09 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,30 @@ static void	__resolve_wildcards__(t_node *curr, t_list_ptr line)
 	closedir(d);
 }
 
-void	ft_wildcards(t_list_ptr line)
+bool	ft_wildcards(t_list_ptr line, t_set *set)
 {
-	t_node	*curr;
-	t_node	*next;
+	t_node		*curr;
+	t_node		*next;
+	t_set_node	*tmp;
 
 	if (empty_lt(line))
-		return ;
+		return (true);
 	curr = line->head;
+	tmp = set->head;
 	while (curr)
 	{
 		next = curr->next;
 		if (ft_strchr(curr->val, '*'))
-			__resolve_wildcards__(curr, line);
+		{
+			if (tmp && tmp->key == curr)
+				tmp = tmp->next;
+			else if (curr->prev && __check_redir__(curr->prev->val)
+				&& !ft_check_cmp(curr->prev->val, "<<"))
+				return (false);
+			else
+				__resolve_wildcards__(curr, line);
+		}
 		curr = next;
 	}
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/31 13:27:25 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:20:22 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void			ft_merge_quotes(t_list_ptr line, t_node *start, t_node *end,
 void			ft_merge_input(t_list_ptr line);
 
 // wildcards
-void			ft_wildcards(t_list_ptr line);
+bool			ft_wildcards(t_list_ptr line, t_set *set);
 bool			__check_wildcards__(char *str);
 void			__resolve_with_chars_util__(t_list_ptr tmp, t_list_ptr list);
 
@@ -197,6 +197,7 @@ int				__strlen_till_dollar__(char *str);
 
 // check_syntax
 bool			ft_check_syntax(t_list_ptr line);
+bool			__check_redir__(char *val);
 
 // history
 void			ft_add_history(t_list_ptr history, char *input);

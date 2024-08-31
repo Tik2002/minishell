@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:24:58 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ static bool	__redirect_in__(t_command *cmd, t_node **curr)
 	if (ft_check_cmp((*curr)->val, "<"))
 	{
 		if (!ft_open(&fd, (*curr)->next->val, O_RDONLY))
-		{
 			return (false);
-		}
+		// dup2(fd, cmd->descriptor->stdin);
+		close(cmd->descriptor->stdin);
 		cmd->descriptor->stdin = fd;
 		cmd->redirection |= redirect_in;
 	}
 	else
 	{
 		if (!ft_heredoc(&fd, (*curr)->next->val, cmd->minishell->export))
-		{
 			return (false);
-		}
+		close(cmd->descriptor->stdin);
 		cmd->descriptor->stdin = fd;
+		// dup2(fd, cmd->descriptor->stdin);
 		cmd->redirection |= redirect_in | redirect_heredoc;
 	}
 	return (true);
@@ -58,19 +58,19 @@ static bool	__redirect_out__(t_command *cmd, t_node **curr)
 	if (ft_check_cmp((*curr)->val, ">"))
 	{
 		if (!ft_open(&fd, (*curr)->next->val, O_WRONLY | O_CREAT | O_TRUNC))
-		{
 			return (false);
-		}
+		close(cmd->descriptor->stdout);
 		cmd->descriptor->stdout = fd;
+		// dup2(fd, cmd->descriptor->stdout);
 		cmd->redirection |= redirect_out;
 	}
 	else
 	{
 		if (!ft_open(&fd, (*curr)->next->val, O_WRONLY | O_CREAT | O_APPEND))
-		{
 			return (false);
-		}
+		close(cmd->descriptor->stdout);
 		cmd->descriptor->stdout = fd;
+		// dup2(fd, cmd->descriptor->stdout);
 		cmd->redirection |= redirect_out;
 	}
 	return (true);

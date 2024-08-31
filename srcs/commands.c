@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 15:54:35 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:25:04 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,17 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		dup2(cmd_matrix->cmds[i]->descriptor->stdin, STDIN_FILENO);
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
-	if (__check_builtins__(cmd_matrix->cmds[i]->name))
-		ft_execute_builtins(cmd_matrix, i);
-	else
+	if (!__check_redir__(cmd_matrix->cmds[i]->name))
 	{
-		if (ft_check_access(cmd_matrix->cmds[i], flag))
-			ft_execute(cmd_matrix, i, flag, pips);
+		if (__check_builtins__(cmd_matrix->cmds[i]->name))
+			ft_execute_builtins(cmd_matrix, i);
 		else
-			__access_error__(cmd_matrix->cmds[i]->name);
+		{
+			if (ft_check_access(cmd_matrix->cmds[i], flag))
+				ft_execute(cmd_matrix, i, flag, pips);
+			else
+				__access_error__(cmd_matrix->cmds[i]->name);
+		}
 	}
 	dup2(pips[in], STDIN_FILENO);
 	dup2(cmd_matrix->minishell->descriptor->stdout, STDOUT_FILENO);

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:39 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:10:25 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:48:24 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_command	*__ft_init_command__(t_minishell *minishell,
 	cmd->descriptor = make_descriptors();
 	cmd->redirection = 0;
 	cmd->minishell = minishell;
+	cmd->pid = -2;
 	init_lt(&cmd->args);
 	init_lt(&cmd->opts);
 	curr = list->head;

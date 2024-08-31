@@ -6,17 +6,21 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:53:34 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:42:28 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	__check_cmp__(char *val)
+bool	__check_redir__(char *val)
 {
 	return (ft_check_cmp(val, ">") || ft_check_cmp(val, ">>")
-		|| ft_check_cmp(val, "<") || ft_check_cmp(val, "<<")
-		|| ft_check_cmp(val, "&&") || ft_check_cmp(val, "||")
+		|| ft_check_cmp(val, "<") || ft_check_cmp(val, "<<"));
+}
+
+static bool	__check_cmp__(char *val)
+{
+	return (ft_check_cmp(val, "&&") || ft_check_cmp(val, "||")
 		|| ft_check_cmp(val, "|"));
 }
 
@@ -27,7 +31,9 @@ static bool	__check__(t_list_ptr line)
 	curr = line->head;
 	while (curr->next)
 	{
-		if (__check_cmp__(curr->val) && __check_cmp__(curr->next->val))
+		if ((__check_redir__(curr->val) && __check_redir__(curr->next->val))
+			|| (__check_redir__(curr->val) && __check_cmp__(curr->next->val))
+			|| (__check_cmp__(curr->val) && __check_cmp__(curr->next->val)))
 		{
 			ft_err_msg("");
 			ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
@@ -42,17 +48,11 @@ static bool	__check__(t_list_ptr line)
 
 bool	ft_check_syntax(t_list_ptr line)
 {
+	if (empty_lt(line))
+		return (true);
 	set_status_signed(258);
 	if (!__check__(line))
 		return (false);
-	if (__check_cmp__(line->head->val))
-	{
-		ft_err_msg("");
-		ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
-		ft_putstr_fd(line->head->val, STDERR_FILENO);
-		ft_putendl_fd("'", STDERR_FILENO);
-		return (false);
-	}
 	if (__check_cmp__(line->tail->val))
 	{
 		ft_err_msg("syntax error: unexpected end of line");

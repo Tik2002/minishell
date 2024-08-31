@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 20:03:38 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/21 17:25:55 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:50:38 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static bool	__check_quotes_and_bracket_closing__(t_list_ptr line,
 	curr = line->head;
 	while (curr)
 	{
-		if (list->head && (ft_check_cmp(list->head->val, curr->val)
+		if (empty_lt(list) && ft_check_cmp(curr->val, ")"))
+			return (false);
+		else if (list->head && (ft_check_cmp(list->head->val, curr->val)
 				|| (ft_check_cmp(curr->val, ")")
 					&& ft_check_cmp(list->head->val, "("))))
 			pop_front_lt(list);

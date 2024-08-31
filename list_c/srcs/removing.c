@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:46 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/22 16:01:50 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:17:07 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	pop_back_lt(t_list_ptr list)
 		{
 			curr = list->tail;
 			list->tail = list->tail->prev;
-			list->tail->next = NULL;
+			if (list->tail && list->tail->next)
+				list->tail->next = NULL;
 			free_node(&curr);
 		}
 		--(list->size);
@@ -92,7 +93,8 @@ void	pop_front_lt(t_list_ptr list)
 		{
 			curr = list->head;
 			list->head = list->head->next;
-			list->head->prev = NULL;
+			if (list->head && list->head->prev)
+				list->head->prev = NULL;
 			free_node(&curr);
 		}
 		--(list->size);

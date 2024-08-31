@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:13:50 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 13:46:16 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:24:56 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ void	ft_exit(t_cmd_matrix *cmd_mtx, int i)
 			__exit__(255, "exit: numeric argument required",
 				cmd_mtx->container, cmd_mtx->size);
 	}
-	__exit__(status, "", cmd_mtx->container, cmd_mtx->size);
+	__exit__(get_status(), "", cmd_mtx->container, cmd_mtx->size);
 }
