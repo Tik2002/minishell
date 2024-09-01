@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:40:20 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/18 16:54:14 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:40:30 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**list_to_matrix_lt(t_list_ptr list)
 	return (res);
 }
 
-int	value_counter_lt(t_list_ptr list, char *src)
+int	value_counter_lt(t_list_ptr list, char *src, t_set *set)
 {
 	t_node	*tmp;
 	int		res;
@@ -65,7 +65,7 @@ int	value_counter_lt(t_list_ptr list, char *src)
 	res = 0;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->val, src, sizeof(tmp->val)))
+		if (!ft_find_set(set, tmp) && !ft_strncmp(tmp->val, src, sizeof(tmp->val)))
 			++res;
 		tmp = tmp->next;
 	}

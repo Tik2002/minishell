@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:25:40 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/19 20:45:56 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:36:54 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ bool	diff_lt(char *word, char *to_cmp)
 	return (false);
 }
 
-t_node	*find_word_range_lt(t_node *curr, t_node *end, char *word)
+t_node	*find_word_range_lt(t_node *curr, t_node *end, char *word, t_set *set)
 {
 	if (curr == end)
 		return (end);
 	while (curr != end)
 	{
-		if (diff_lt(curr->val, word))
+		if (!ft_find_set(set, curr) && diff_lt(curr->val, word))
 			return (curr);
 		curr = curr->next;
 	}

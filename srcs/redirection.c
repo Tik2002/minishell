@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 22:24:58 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:04:02 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static bool	__check__(t_node **curr)
 {
-	if (!(*curr) || !(*curr)->next || ft_check_cmp((*curr)->next->val, ""))
+	if (!(*curr)->next || ft_check_cmp((*curr)->next->val, ""))
 	{
-		ft_err_msg("ambiguous redirect");
+		ft_err_msg(": No such file or directory");
 		return (false);
 	}
 	return (true);
@@ -32,7 +32,6 @@ static bool	__redirect_in__(t_command *cmd, t_node **curr)
 	{
 		if (!ft_open(&fd, (*curr)->next->val, O_RDONLY))
 			return (false);
-		// dup2(fd, cmd->descriptor->stdin);
 		close(cmd->descriptor->stdin);
 		cmd->descriptor->stdin = fd;
 		cmd->redirection |= redirect_in;
@@ -43,7 +42,6 @@ static bool	__redirect_in__(t_command *cmd, t_node **curr)
 			return (false);
 		close(cmd->descriptor->stdin);
 		cmd->descriptor->stdin = fd;
-		// dup2(fd, cmd->descriptor->stdin);
 		cmd->redirection |= redirect_in | redirect_heredoc;
 	}
 	return (true);
@@ -61,7 +59,6 @@ static bool	__redirect_out__(t_command *cmd, t_node **curr)
 			return (false);
 		close(cmd->descriptor->stdout);
 		cmd->descriptor->stdout = fd;
-		// dup2(fd, cmd->descriptor->stdout);
 		cmd->redirection |= redirect_out;
 	}
 	else
@@ -70,7 +67,6 @@ static bool	__redirect_out__(t_command *cmd, t_node **curr)
 			return (false);
 		close(cmd->descriptor->stdout);
 		cmd->descriptor->stdout = fd;
-		// dup2(fd, cmd->descriptor->stdout);
 		cmd->redirection |= redirect_out;
 	}
 	return (true);
@@ -110,6 +106,12 @@ bool	ft_check_redirections(t_command *cmd, t_list_ptr list)
 		tmp = curr->next;
 		if (!__check_cmp__(cmd, list, &curr, &tmp))
 		{
+			if (curr->next && *curr->next->val)
+			{
+				ft_err_msg(NULL);
+				ft_putstr_fd(curr->next->val, STDERR_FILENO);
+				ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+			}
 			set_status_unsigned(1);
 			return (false);
 		}

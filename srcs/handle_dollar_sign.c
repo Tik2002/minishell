@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:35:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/27 16:09:46 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:02:33 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	__proc__(char **val, t_bs_tree_ptr tree)
 		}
 		curr = curr->next;
 	}
-	ft_merge_input(&list);
+	ft_merge_input(&list, NULL);
 	free(*val);
 	*val = ft_strdup(list.head->val);
 	clear_lt(&list);
@@ -113,9 +113,11 @@ void	ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree)
 		}
 		if (empty_lt(&stack) || ft_check_cmp(stack.head->val, "\""))
 			if (ft_strchr(curr->val, '$'))
+			{
 				ft_resolve_dollar(tree, &curr->val);
-		if (!*curr->val)
-			remove_node_lt(line, curr);
+				if (!*curr->val)
+					remove_node_lt(line, curr);
+			}
 		curr = curr->next;
 	}
 }

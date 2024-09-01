@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 22:25:04 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 21:23:23 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 	bool	flag;
 
 	i = -1;
-	while (++i < cmd_matrix->size)
+	while (++i < cmd_matrix->size && cmd_matrix->cmds[i]->name)
 	{
 		flag = false;
 		if (pipe(pips) < 0)

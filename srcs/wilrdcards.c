@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:59:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 21:44:09 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:27:44 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,34 @@ static void	__resolve_wildcards__(t_node *curr, t_list_ptr line)
 	closedir(d);
 }
 
-bool	ft_wildcards(t_list_ptr line, t_set *set)
+static bool	__check__(t_set *set, t_node *curr)
 {
-	t_node		*curr;
-	t_node		*next;
-	t_set_node	*tmp;
+	return (!ft_find_set(set, curr) && __check_redir__(curr->val)
+		&& !ft_check_cmp(curr->val, "<<"));
+}
+
+void	ft_wildcards(t_list_ptr line, t_set *set)
+{
+	t_node	*curr;
+	t_node	*next;
 
 	if (empty_lt(line))
-		return (true);
+		return ;
 	curr = line->head;
-	tmp = set->head;
 	while (curr)
 	{
 		next = curr->next;
-		if (ft_strchr(curr->val, '*'))
+		if (!ft_find_set(set, curr) && ft_strchr(curr->val, '*'))
 		{
-			if (tmp && tmp->key == curr)
-				tmp = tmp->next;
-			else if (curr->prev && __check_redir__(curr->prev->val)
-				&& !ft_check_cmp(curr->prev->val, "<<"))
-				return (false);
+			if (curr->prev && __check__(set, curr->prev))
+			{
+				ft_err_msg("*: ambiguous redirect");
+				remove_node_lt(line, curr->prev);
+				remove_node_lt(line, curr);
+			}
 			else
 				__resolve_wildcards__(curr, line);
 		}
 		curr = next;
 	}
-	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:39 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 22:48:24 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:42:00 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	__init_command__(t_cmd_matrix *cmd_matrix, t_node *curr,
 	init_lt(&list);
 	while (++i < cmd_matrix->size)
 	{
-		tail = find_word_range_lt(curr, end, "|");
+		tail = find_word_range_lt(curr, end, "|", cmd_matrix->minishell->set);
 		copy_range_lt(&list, curr, tail);
 		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list);
 		if (tail)
@@ -85,7 +85,7 @@ void	ft_init_command(t_container *container)
 	while (++i < container->size)
 	{
 		end = curr;
-		while (end && !ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
+		while (end && !ft_find_set(container->minishell->set, end) && !ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
 				"&&"))
 			end = end->next;
 		__init_command__(container->cmds_mtx[i], curr, end);

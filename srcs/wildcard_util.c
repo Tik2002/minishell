@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 23:09:15 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 13:38:58 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:42:23 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	__resolve_with_chars_util__(t_list_ptr tmp, t_list_ptr list)
 	t_node	*start;
 
 	bool (*fptr)(char *, char *);
-	count = value_counter_lt(list, "*");
+	count = value_counter_lt(list, "*", NULL);
 	start = list->head;
 	flag = true;
 	while (!empty_lt(tmp) && start)

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/31 21:20:22 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:53:05 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <bs_tree.h>
 # include <as_tree.h>
+# include <set.h>
 # include <typedefs.h>
 # include <curses.h>
 # include <dirent.h>
@@ -44,17 +45,6 @@ enum						e_direct
 	redirect_heredoc = 8
 };
 
-struct						s_set_node
-{
-	t_node		*key;
-	t_set_node	*next;
-};
-
-struct						s_set
-{
-	t_set_node	*head;
-};
-
 struct						s_descriptor
 {
 	int						stdout;
@@ -66,6 +56,7 @@ struct						s_minishell
 {
 	t_list					line;
 	t_list					history;
+	t_set					*set;
 	t_bs_tree_ptr			export;
 	t_descriptor			*descriptor;
 };
@@ -115,8 +106,7 @@ void			set_signals_interactive(void);
 void			set_signals_noninteractive(void);
 
 // check_delimitors
-bool			ft_delim(t_bs_tree_ptr tree, t_list_ptr line, char *del,
-					char *input);
+bool			ft_delim(t_minishell *minishell, char *del, char *input);
 
 // split_with_delimitors
 void			ft_split_with_delim(t_list_ptr line, char *del, char *input);
@@ -129,19 +119,13 @@ void			ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree);
 bool			ft_quotes_and_bracket_checker(t_list_ptr line);
 void			ft_delete_quotes(t_list_ptr line, t_set *set);
 
-// set
-t_set			*ft_init_set(void);
-bool			ft_empty_set(t_set *set);
-void			ft_insert_set(t_set *set, t_node *node);
-void			ft_clear_set(t_set **set);
-
 // merge_input
 void			ft_merge_quotes(t_list_ptr line, t_node *start, t_node *end,
 					t_set *set);
-void			ft_merge_input(t_list_ptr line);
+void			ft_merge_input(t_list_ptr line, t_set *set);
 
 // wildcards
-bool			ft_wildcards(t_list_ptr line, t_set *set);
+void			ft_wildcards(t_list_ptr line, t_set *set);
 bool			__check_wildcards__(char *str);
 void			__resolve_with_chars_util__(t_list_ptr tmp, t_list_ptr list);
 
@@ -196,7 +180,7 @@ int				__counter__(char *str, char c);
 int				__strlen_till_dollar__(char *str);
 
 // check_syntax
-bool			ft_check_syntax(t_list_ptr line);
+bool			ft_check_syntax(t_list_ptr line, t_set *set);
 bool			__check_redir__(char *val);
 
 // history

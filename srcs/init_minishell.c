@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:38:20 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/22 12:27:52 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 21:00:48 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init_minishell(t_minishell *minishell, char **env)
 	init_lt(&(minishell->history));
 	minishell->export = matrix_to_tree_tr(env);
 	minishell->descriptor = make_descriptors();
+	minishell->set = ft_init_set();
 	update_tr(minishell->export, "OLDPWD", "", false);
 	pwd = __ft_pwd__();
 	update_tr(minishell->export, "PWD", pwd, true);

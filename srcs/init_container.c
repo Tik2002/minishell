@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 21:56:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:42:14 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:39:53 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ t_container	*ft_init_container(t_minishell *minishell)
 	t_container	*container;
 
 	container = wrapper_malloc(sizeof(t_container));
-	container->size = value_counter_lt(&minishell->line, "||")
-		+ value_counter_lt(&minishell->line, "&&") + 1;
+	container->size = value_counter_lt(&minishell->line, "||", minishell->set)
+		+ value_counter_lt(&minishell->line, "&&", minishell->set) + 1;
 	container->cmds_mtx = wrapper_malloc(sizeof(t_cmd_matrix) * (container->size
 				+ 1));
 	container->cmds_mtx[container->size] = NULL;

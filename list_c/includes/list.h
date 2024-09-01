@@ -6,13 +6,14 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:43 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/08/21 22:53:21 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:43:40 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
+# include "../includes/minishell.h"
 # include <libft.h>
 # include <limits.h>
 # include <stdarg.h>
@@ -74,11 +75,11 @@ void	copy_lt(t_list_ptr to_copy, t_list_ptr other);
 void	copy_range_lt(t_list_ptr this, t_node *node,
 			t_node *end);
 
-int		value_counter_lt(t_list_ptr list, char *src);
+int		value_counter_lt(t_list_ptr list, char *src, t_set *set);
 
 t_node	*find_word_lt(t_node *node, char *word);
 void	free_node(t_node **node);
-t_node	*find_word_range_lt(t_node *curr, t_node *end, char *word);
+t_node	*find_word_range_lt(t_node *curr, t_node *end, char *word, t_set *set);
 t_node	*find_word_if_lt(t_node *node, bool (*p)(char *));
 int		find_index_lt(t_list_ptr list, t_node *to_find);
 

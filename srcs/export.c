@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 00:46:19 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/29 16:04:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/01 22:35:35 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	__util__(char *val, t_list_ptr list, bool flag)
 	else
 		next = tmp.head->next;
 	copy_range_lt(list, next, NULL);
-	ft_merge_input(list);
+	ft_merge_input(list, NULL);
 	push_front_lt(list, tmp.head->val);
 	clear_lt(&tmp);
 }
