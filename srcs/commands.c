@@ -32,6 +32,14 @@ static void	__access_error__(char *cmd)
 		ft_putendl_fd(": no such file or directory", STDERR_FILENO);
 }
 
+
+static bool	__check_name__(t_command *cmd)
+{
+	if (!cmd->args.head)
+		return (false);
+	return (ft_check_cmp(cmd->args.head->val, ".__quoted_redirection__"));
+}
+
 static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		bool *flag)
 {
@@ -41,9 +49,9 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		dup2(cmd_matrix->cmds[i]->descriptor->stdin, STDIN_FILENO);
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
-	if (__check_redir__(cmd_matrix->cmds[i]->name) && cmd_matrix->cmds[i]->args.head)
+	if (__check_name__(cmd_matrix->cmds[i]))
 		__access_error__(cmd_matrix->cmds[i]->name);
-	else
+	else if (!__check_redir__(cmd_matrix->cmds[i]->name))
 	{
 		if (__check_builtins__(cmd_matrix->cmds[i]->name))
 			ft_execute_builtins(cmd_matrix, i);
@@ -75,10 +83,7 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 			return (ft_err_msg("fork: Resource temporarily unavailable"));
 		__eval_commands__(cmd_matrix, pips, i, &flag);
 		if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
-		{
 			unlink(".heredoc.txt");
-			printf("\n");
-		}
 		if (cmd_matrix->cmds[0]->pid == -1)
 			return (set_status_unsigned(1));
 	}

@@ -12,25 +12,50 @@
 
 #include <minishell.h>
 
-bool	ft_heredoc(int *fd, char *delim, t_bs_tree_ptr export)
+static void	signal_heredoc(int unused)
+{
+	(void)unused;
+	printf("\n");
+	exit (130);
+}
+
+static void	set_signals_heredoc(void)
+{
+	struct sigaction	act;
+
+	ft_memset(&act, 0, sizeof(act));
+	act.sa_handler = &signal_heredoc;
+	sigemptyset(&act.sa_mask);
+	act.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &act, NULL);
+	sigaction(SIGQUIT, &act, NULL);
+	disable_echoctl();
+}
+
+bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell, t_node *check)
 {
 	char	*line;
+	char	*delim;
+	bool	flag;
 
-	if (!delim)
+	if (!delim_node->val)
 		return (false);
+	delim = delim_node->val;
+	flag = ft_find_set(minishell->set, check->next);
 	ft_open(fd, ".heredoc.txt", O_CREAT | O_RDWR);
-	line = readline("here_doc> ");
-	while (line && !ft_check_cmp(line, delim))
+	while (true)
 	{
-		ft_resolve_dollar(export, &line);
+		line = readline("here_doc> ");
+		set_signals_heredoc();
+		if (!line || ft_check_cmp(line, delim))
+			break ;
+		if (flag)
+			ft_resolve_dollar(minishell->export, &line);
 		ft_append(&line, "\n");
 		ft_putstr_fd(line, *fd);
 		free(line);
-		line = readline("here_doc> ");
 	}
 	free(line);
 	close(*fd);
-	if (!ft_open(fd, ".heredoc.txt", O_RDONLY))
-		return (false);
-	return (true);
+	return (ft_open(fd, ".heredoc.txt", O_RDONLY));
 }

@@ -12,18 +12,30 @@
 
 #include <minishell.h>
 
-static void	__push_back__(t_list_ptr list, t_node **curr)
-{
-	push_back_lt(list, (*curr)->val);
-	*curr = (*curr)->next;
-}
-
 static void	__sort_input__(t_command *cmd, t_node **curr)
 {
 	while (*curr && (*curr)->val[0] == '-')
-		__push_back__(&cmd->opts, curr);
+	{
+		push_back_lt(&cmd->opts, (*curr)->val);
+		*curr = (*curr)->next;
+	}
 	while (*curr)
-		__push_back__(&cmd->args, curr);
+	{
+		push_back_lt(&cmd->args, (*curr)->val);
+		*curr = (*curr)->next;
+	}
+}
+
+static void	__cmd_name__(t_command *cmd, t_node *check)
+{
+	if (__check_redir__(cmd->name))
+	{
+		if (ft_find_set(cmd->minishell->set, check))
+			push_front_lt(&cmd->args, ".__quoted_redirection__");
+		else
+			push_front_lt(&cmd->args, ".__redirection__");
+	}
+	
 }
 
 static t_command	*__ft_init_command__(t_minishell *minishell,
@@ -41,6 +53,7 @@ static t_command	*__ft_init_command__(t_minishell *minishell,
 	init_lt(&cmd->opts);
 	curr = list->head;
 	cmd->name = ft_strdup(curr->val);
+	__cmd_name__(cmd, check);
 	if (!curr->next)
 		return (cmd);
 	if (!ft_check_redirections(cmd, list, check))
@@ -85,8 +98,8 @@ void	ft_init_command(t_container *container)
 	while (++i < container->size)
 	{
 		end = curr;
-		while (end && !ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
-				"&&"))
+		while (end && ((!ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
+				"&&")) || ft_find_set(container->minishell->set, end)))
 			end = end->next;
 		__init_command__(container->cmds_mtx[i], curr, end);
 		if (end)

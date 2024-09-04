@@ -88,7 +88,7 @@ void	ft_wildcards(t_list_ptr line, t_set *set)
 				remove_node_lt(line, curr->prev);
 				remove_node_lt(line, curr);
 			}
-			else
+			else if (curr->prev && !ft_check_cmp(curr->prev->val, "<<"))
 				__resolve_wildcards__(curr, line);
 		}
 		curr = next;
