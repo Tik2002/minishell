@@ -26,7 +26,10 @@ static void	__access_error__(char *cmd)
 		return ;
 	ft_err_msg("");
 	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putendl_fd(": no such file or directory", STDERR_FILENO);
+	if (__check_redir__(cmd))
+		ft_putendl_fd(": command not found", STDERR_FILENO);
+	else
+		ft_putendl_fd(": no such file or directory", STDERR_FILENO);
 }
 
 static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
@@ -39,7 +42,7 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
 	if (__check_redir__(cmd_matrix->cmds[i]->name) && cmd_matrix->cmds[i]->args.head)
-		i++;
+		__access_error__(cmd_matrix->cmds[i]->name);
 	else
 	{
 		if (__check_builtins__(cmd_matrix->cmds[i]->name))
