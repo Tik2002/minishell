@@ -23,10 +23,10 @@ static void	__make_cmds_mtx__(t_container *container, t_list_ptr line)
 	{
 		container->cmds_mtx[i] = wrapper_malloc(sizeof(t_cmd_matrix));
 		container->cmds_mtx[i]->size = 1;
-		while (curr && !ft_check_cmp(curr->val, "||")
-			&& !ft_check_cmp(curr->val, "&&"))
+		while (curr && (ft_find_set(container->minishell->set, curr) || (!ft_check_cmp(curr->val, "||")
+			&& !ft_check_cmp(curr->val, "&&"))))
 		{
-			if (ft_check_cmp(curr->val, "|"))
+			if (!ft_find_set(container->minishell->set, curr) && ft_check_cmp(curr->val, "|"))
 				container->cmds_mtx[i]->size++;
 			curr = curr->next;
 		}
@@ -47,8 +47,8 @@ static void	__util__(t_container *container, t_node **oper, int *pr, int i)
 	t_priority	priority;
 
 	last_pr = *pr;
-	while (!ft_check_cmp((*oper)->val, "||") && !ft_check_cmp((*oper)->val,
-			"&&"))
+	while (ft_find_set(container->minishell->set, *oper) || (!ft_check_cmp((*oper)->val, "||") && !ft_check_cmp((*oper)->val,
+			"&&")))
 	{
 		if (ft_check_cmp((*oper)->val, "("))
 			--(*pr);

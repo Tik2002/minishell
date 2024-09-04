@@ -15,7 +15,6 @@
 
 # include <bs_tree.h>
 # include <as_tree.h>
-# include <set.h>
 # include <typedefs.h>
 # include <curses.h>
 # include <dirent.h>
@@ -151,7 +150,7 @@ t_descriptor	*make_descriptors(void);
 void			ft_reset_descriptors(t_command *cmd);
 
 // redirection
-bool			ft_check_redirections(t_command *cmd, t_list_ptr list);
+bool			ft_check_redirections(t_command *cmd, t_list_ptr list, t_node *check);
 
 // clear
 void			ft_clear_cmds(t_command **cmd);

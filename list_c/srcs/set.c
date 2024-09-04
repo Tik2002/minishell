@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <list.h>
 
 static t_set_node	*__make_set_node__(t_node *node, t_quoted quote_t)
 {

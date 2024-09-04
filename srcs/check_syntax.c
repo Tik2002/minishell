@@ -31,7 +31,7 @@ static bool	__check__(t_list_ptr line, t_set *set)
 	curr = line->head;
 	while (curr->next)
 	{
-		if ((!ft_find_set(set, curr) || !ft_find_set(set, curr->next))
+		if (ft_find_set(set, curr) && ft_find_set(set, curr->next)
 			&& ((__check_redir__(curr->val) && __check_redir__(curr->next->val))
 			|| (__check_redir__(curr->val) && __check_cmp__(curr->next->val))
 			|| (__check_cmp__(curr->val) && __check_cmp__(curr->next->val))))

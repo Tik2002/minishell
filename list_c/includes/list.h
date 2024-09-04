@@ -13,7 +13,7 @@
 #ifndef LIST_H
 # define LIST_H
 
-# include "../includes/minishell.h"
+# include "../includes/typedefs.h"
 # include <libft.h>
 # include <limits.h>
 # include <stdarg.h>
@@ -21,9 +21,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_node	t_node;
-typedef struct s_list	t_list;
-typedef t_list			*t_list_ptr;
+typedef enum e_quoted		t_quoted;
+typedef struct s_node		t_node;
+typedef struct s_list		t_list;
+typedef t_list				*t_list_ptr;
+typedef struct s_set		t_set;
+typedef struct s_set_node	t_set_node;
 
 struct					s_node
 {
@@ -38,6 +41,32 @@ struct					s_list
 	t_node				*tail;
 	int					size;
 };
+
+enum					e_quoted
+{
+	single_q,
+	double_q,
+};
+
+struct					s_set_node
+{
+	t_node		*key;
+	t_set_node	*next;
+	t_quoted	quotes;
+};
+
+struct					s_set
+{
+	t_set_node	*head;
+};
+
+// set
+t_set	*ft_init_set(void);
+bool	ft_empty_set(t_set *set);
+void	ft_insert_set(t_set *set, t_node *node, t_quoted quote_t);
+bool	ft_find_set(t_set *set, t_node *node);
+void	ft_clear_set(t_set *set);
+
 
 bool	empty_lt(t_list_ptr list);
 

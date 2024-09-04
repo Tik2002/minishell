@@ -38,7 +38,9 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		dup2(cmd_matrix->cmds[i]->descriptor->stdin, STDIN_FILENO);
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
-	if (!__check_redir__(cmd_matrix->cmds[i]->name))
+	if (__check_redir__(cmd_matrix->cmds[i]->name) && cmd_matrix->cmds[i]->args.head)
+		i++;
+	else
 	{
 		if (__check_builtins__(cmd_matrix->cmds[i]->name))
 			ft_execute_builtins(cmd_matrix, i);

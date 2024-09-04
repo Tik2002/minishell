@@ -27,7 +27,7 @@ static void	__sort_input__(t_command *cmd, t_node **curr)
 }
 
 static t_command	*__ft_init_command__(t_minishell *minishell,
-		t_list_ptr list)
+		t_list_ptr list, t_node *check)
 {
 	t_command	*cmd;
 	t_node		*curr;
@@ -43,7 +43,7 @@ static t_command	*__ft_init_command__(t_minishell *minishell,
 	cmd->name = ft_strdup(curr->val);
 	if (!curr->next)
 		return (cmd);
-	if (!ft_check_redirections(cmd, list))
+	if (!ft_check_redirections(cmd, list, check))
 	{
 		free(cmd->name);
 		cmd->name = NULL;
@@ -67,7 +67,7 @@ static void	__init_command__(t_cmd_matrix *cmd_matrix, t_node *curr,
 	{
 		tail = find_word_range_lt(curr, end, "|", cmd_matrix->minishell->set);
 		copy_range_lt(&list, curr, tail);
-		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list);
+		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list, curr);
 		if (tail)
 			curr = tail->next;
 		clear_lt(&list);
@@ -85,7 +85,7 @@ void	ft_init_command(t_container *container)
 	while (++i < container->size)
 	{
 		end = curr;
-		while (end && !ft_find_set(container->minishell->set, end) && !ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
+		while (end && !ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
 				"&&"))
 			end = end->next;
 		__init_command__(container->cmds_mtx[i], curr, end);

@@ -95,16 +95,16 @@ static bool	__check_cmp__(t_command *cmd, t_list_ptr list, t_node **curr,
 	return (true);
 }
 
-bool	ft_check_redirections(t_command *cmd, t_list_ptr list)
+bool	ft_check_redirections(t_command *cmd, t_list_ptr list, t_node *check)
 {
-	t_node	*tmp;
 	t_node	*curr;
+	t_node	*tmp;
 
 	curr = list->head;
 	while (curr && curr->next)
 	{
 		tmp = curr->next;
-		if (!__check_cmp__(cmd, list, &curr, &tmp))
+		if (!ft_find_set(cmd->minishell->set, check) && !__check_cmp__(cmd, list, &curr, &tmp))
 		{
 			if (curr->next && *curr->next->val)
 			{
@@ -116,6 +116,8 @@ bool	ft_check_redirections(t_command *cmd, t_list_ptr list)
 			return (false);
 		}
 		curr = tmp;
+		while(!ft_check_cmp(curr->val, check->val))
+			check = check->next;
 	}
 	set_status_unsigned(0);
 	return (true);
