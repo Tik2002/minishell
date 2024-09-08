@@ -204,7 +204,7 @@ void			ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag,
 void			ft_echo(t_command *cmd);
 
 // pwd
-char			*__ft_pwd__(void);
+char			*__ft_pwd__(t_bs_tree_ptr export);
 void			ft_pwd(t_command *cmd);
 
 // cd

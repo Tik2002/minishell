@@ -12,29 +12,30 @@
 
 #include <minishell.h>
 
-static void	__update_pwd__(t_minishell *minishell, char *pwd, char *oldpwd)
+static void	__update_pwd__(t_bs_tree_ptr export, char *pwd, char *oldpwd)
 {
-	update_tr(minishell->export, "OLDPWD", oldpwd, true);
-	update_tr(minishell->export, "PWD", pwd, true);
+	update_tr(export, "OLDPWD", oldpwd, true);
+	update_tr(export, "PWD", pwd, true);
+	if (ft_str_ends_with(pwd, "/../"))
+		ft_err_msg("cd: error retrieving current directory: \
+getcwd: cannot access parent directories: No such file or directory");
 }
 
-static bool	__ft_cd__(char *path, int size)
+static bool	__ft_cd__(t_bs_tree_ptr export, char *path, int size)
 {
 	char	*oldpwd;
 
-	oldpwd = __ft_pwd__();
+	oldpwd = ft_strdup(get_tr(export, "PWD"));
+	if (!oldpwd || !*oldpwd)
+	{
+		free(oldpwd);
+		oldpwd = __ft_pwd__(export);
+	}
 	if (chdir(path) == -1)
 	{
 		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 		ft_putstr_fd(path, STDERR_FILENO);
 		ft_putendl_fd(": directory does not exist", STDERR_FILENO);
-		free(oldpwd);
-		return (false);
-	}
-	if (size == 1 && errno == ENOENT)
-	{
-		ft_err_msg("cd: error retrieving current directory: \
-getcwd: cannot access parent directories: No such file or directory");
 		free(oldpwd);
 		return (false);
 	}
@@ -72,12 +73,12 @@ static void	__eval__(t_command *cmd, char *oldpwd, int *status, int size)
 		pwd = __get_home__(cmd->minishell->export);
 	if (!pwd)
 		return ;
-	if (!__ft_cd__(pwd, size))
+	if (!__ft_cd__(cmd->minishell->export, pwd, size))
 		return ;
-	pwd = __ft_pwd__();
+	pwd = __ft_pwd__(cmd->minishell->export);
 	*status = 0;
 	if (!ft_check_cmp(oldpwd, pwd))
-		__update_pwd__(cmd->minishell, pwd, oldpwd);
+		__update_pwd__(cmd->minishell->export, pwd, oldpwd);
 	free(pwd);
 }
 

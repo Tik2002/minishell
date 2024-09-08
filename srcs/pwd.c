@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-char	*__ft_pwd__(void)
+char	*__ft_pwd__(t_bs_tree_ptr export)
 {
 	char	*path;
 	int		size;
@@ -20,7 +20,10 @@ char	*__ft_pwd__(void)
 	size = 4224;
 	path = wrapper_malloc(size + 1);
 	if (!getcwd(path, size))
+	{
+		path = ft_strdup(get_tr(export, "PWD"));
 		ft_append(&path, "/../");
+	}
 	return (path);
 }
 
@@ -34,7 +37,13 @@ void	ft_pwd(t_command *cmd)
 		status = 1;
 	else
 	{
-		path = __ft_pwd__();
+		path = get_tr(cmd->minishell->export, "PWD");
+		if (path && *path)
+		{
+			printf("%s\n", path);
+			return ;
+		}
+		path = __ft_pwd__(cmd->minishell->export);
 		printf("%s\n", path);
 		free (path);
 	}
