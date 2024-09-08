@@ -139,7 +139,7 @@ void			ft_append(char **left, char *right);
 void			ft_eval_container(t_container *container);
 
 // check_script
-bool			ft_check_script(char *script, t_bs_tree_ptr tree);
+bool			ft_check_script(char *script);
 
 // commands
 void			ft_eval_commands(t_cmd_matrix *cmd_matrix);

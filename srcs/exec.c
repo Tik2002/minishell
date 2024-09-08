@@ -67,8 +67,7 @@ void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 	{
 		if (!*flag)
 			__util__(cmd_mtx->cmds[index]->name, ": command not found");
-		if (!*flag || !ft_check_script(cmd_mtx->cmds[index]->name,
-				cmd_mtx->minishell->export))
+		if (!*flag || !ft_check_script(cmd_mtx->cmds[index]->name))
 			return ;
 	}
 	cmd_mtx->cmds[index]->pid = fork();
