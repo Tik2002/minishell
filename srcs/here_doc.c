@@ -15,7 +15,7 @@
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	printf("\n");
+	// printf("\n");
 	exit (130);
 }
 
@@ -32,30 +32,53 @@ static void	set_signals_heredoc(void)
 	disable_echoctl();
 }
 
-bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell, t_node *check)
+static int	__heredoc__(char *delim, t_minishell *minishell, bool flag)
 {
 	char	*line;
-	char	*delim;
-	bool	flag;
-
-	if (!delim_node->val)
-		return (false);
-	delim = delim_node->val;
-	flag = ft_find_set(minishell->set, check->next);
-	ft_open(fd, ".heredoc.txt", O_CREAT | O_RDWR);
+	int		fd;
+	
+	ft_open(&fd, ".heredoc.txt", O_CREAT | O_RDWR);
+	set_signals_heredoc();
 	while (true)
 	{
 		line = readline("here_doc> ");
-		set_signals_heredoc();
 		if (!line || ft_check_cmp(line, delim))
 			break ;
 		if (flag)
 			ft_resolve_dollar(minishell->export, &line);
 		ft_append(&line, "\n");
-		ft_putstr_fd(line, *fd);
+		ft_putstr_fd(line, fd);
 		free(line);
 	}
 	free(line);
-	close(*fd);
+	close(fd);
+	exit(0);
+}
+
+bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell, t_node *check)
+{
+	pid_t	pid;
+	int		res;
+	bool	flag;
+	char	*delim;
+
+	if (!delim_node->val)
+		return (false);
+	delim = delim_node->val;
+	flag = !ft_find_set(minishell->set, check);
+	pid = fork();
+	res = 0;
+	if (pid == -1)
+		ft_err_msg("here_doc fork error");
+	if (pid == 0)
+		__heredoc__(delim, minishell, flag);
+	waitpid(pid, &res, 0);
+	res = WEXITSTATUS(res);
+	if (res == 130)
+	{
+		set_status_signed(res);
+		// return (true);
+	}
 	return (ft_open(fd, ".heredoc.txt", O_RDONLY));
 }
+

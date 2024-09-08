@@ -23,7 +23,7 @@ void	ft_init_minishell(t_minishell *minishell, char **env)
 	minishell->descriptor = make_descriptors();
 	minishell->set = ft_init_set();
 	update_tr(minishell->export, "OLDPWD", "", false);
-	pwd = __ft_pwd__();
+	pwd = __ft_pwd__(minishell->export);
 	update_tr(minishell->export, "PWD", pwd, true);
 	remove_tr(minishell->export, "_");
 	shlvl = ft_itoa(ft_atoi(get_tr(minishell->export, "SHLVL")) + 1);
