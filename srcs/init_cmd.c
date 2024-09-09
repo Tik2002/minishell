@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:39 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 22:42:00 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:55:56 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	__cmd_name__(t_command *cmd, t_node *check)
 		else
 			push_front_lt(&cmd->args, ".__redirection__");
 	}
-	
 }
 
 static t_command	*__ft_init_command__(t_minishell *minishell,
@@ -80,7 +79,8 @@ static void	__init_command__(t_cmd_matrix *cmd_matrix, t_node *curr,
 	{
 		tail = find_word_range_lt(curr, end, "|", cmd_matrix->minishell->set);
 		copy_range_lt(&list, curr, tail);
-		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list, curr);
+		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list,
+				curr);
 		if (tail)
 			curr = tail->next;
 		clear_lt(&list);
@@ -99,7 +99,7 @@ void	ft_init_command(t_container *container)
 	{
 		end = curr;
 		while (end && ((!ft_check_cmp(end->val, "||") && !ft_check_cmp(end->val,
-				"&&")) || ft_find_set(container->minishell->set, end)))
+						"&&")) || ft_find_set(container->minishell->set, end)))
 			end = end->next;
 		__init_command__(container->cmds_mtx[i], curr, end);
 		if (end)

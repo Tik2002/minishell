@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:35:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 22:02:33 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:19:28 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ static void	__proc__(char **val, t_bs_tree_ptr tree)
 	clear_lt(&list);
 }
 
-void	ft_resolve_dollar(t_bs_tree_ptr tree, char **val)
+bool	ft_resolve_dollar(t_bs_tree_ptr tree, char **val)
 {
 	if (!__counter__(*val, '$') || ft_strlen(*val) == 1)
-		return ;
+		return (true);
 	__proc__(val, tree);
+	return (true);
 }
 
 void	ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree)
@@ -112,12 +113,10 @@ void	ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree)
 				push_front_lt(&stack, curr->val);
 		}
 		if (empty_lt(&stack) || ft_check_cmp(stack.head->val, "\""))
-			if (ft_strchr(curr->val, '$'))
-			{
-				ft_resolve_dollar(tree, &curr->val);
+			if (ft_strchr(curr->val, '$') && ft_resolve_dollar(tree,
+					&curr->val))
 				if (!*curr->val)
 					remove_node_lt(line, curr);
-			}
 		curr = curr->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 18:53:23 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 22:11:18 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:21:45 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static bool	__is_mergeable__(t_node *curr, t_set *set)
 	if (ft_check_cmp(curr->val, "<") || ft_check_cmp(curr->val, ">")
 		|| ft_check_cmp(curr->val, "|") || ft_check_cmp(curr->val, "&"))
 	{
-		if (ft_check_cmp(curr->val, curr->next->val) && !ft_find_set(set, curr) && !ft_find_set(set, curr->next))
+		if (ft_check_cmp(curr->val, curr->next->val) && !ft_find_set(set, curr)
+			&& !ft_find_set(set, curr->next))
 			return (true);
 		return (false);
 	}

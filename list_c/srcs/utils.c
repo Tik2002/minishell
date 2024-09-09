@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:40:20 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/01 22:40:30 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:12:47 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	value_counter_lt(t_list_ptr list, char *src, t_set *set)
 	res = 0;
 	while (tmp)
 	{
-		if (!ft_find_set(set, tmp) && !ft_strncmp(tmp->val, src, sizeof(tmp->val)))
+		if (!ft_find_set(set, tmp) && !ft_strncmp(tmp->val, src,
+				sizeof(tmp->val)))
 			++res;
 		tmp = tmp->next;
 	}

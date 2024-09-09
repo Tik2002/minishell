@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 21:23:23 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:15:34 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	__access_error__(char *cmd)
 	else
 		ft_putendl_fd(": no such file or directory", STDERR_FILENO);
 }
-
 
 static bool	__check_name__(t_command *cmd)
 {

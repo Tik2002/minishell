@@ -6,11 +6,20 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 21:56:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 22:39:53 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:48:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static void	__make_cmds_mtx_utils__(t_container *container, int i)
+{
+	container->cmds_mtx[i]->cmds = wrapper_malloc(sizeof(t_command)
+			* (container->cmds_mtx[i]->size + 1));
+	container->cmds_mtx[i]->cmds[container->cmds_mtx[i]->size] = NULL;
+	container->cmds_mtx[i]->minishell = container->minishell;
+	container->cmds_mtx[i]->container = container;
+}
 
 static void	__make_cmds_mtx__(t_container *container, t_list_ptr line)
 {
@@ -23,18 +32,16 @@ static void	__make_cmds_mtx__(t_container *container, t_list_ptr line)
 	{
 		container->cmds_mtx[i] = wrapper_malloc(sizeof(t_cmd_matrix));
 		container->cmds_mtx[i]->size = 1;
-		while (curr && (ft_find_set(container->minishell->set, curr) || (!ft_check_cmp(curr->val, "||")
-			&& !ft_check_cmp(curr->val, "&&"))))
+		while (curr && (ft_find_set(container->minishell->set, curr)
+				|| (!ft_check_cmp(curr->val, "||") && !ft_check_cmp(curr->val,
+						"&&"))))
 		{
-			if (!ft_find_set(container->minishell->set, curr) && ft_check_cmp(curr->val, "|"))
+			if (!ft_find_set(container->minishell->set, curr)
+				&& ft_check_cmp(curr->val, "|"))
 				container->cmds_mtx[i]->size++;
 			curr = curr->next;
 		}
-		container->cmds_mtx[i]->cmds = wrapper_malloc(sizeof(t_command)
-				* (container->cmds_mtx[i]->size + 1));
-		container->cmds_mtx[i]->cmds[container->cmds_mtx[i]->size] = NULL;
-		container->cmds_mtx[i]->minishell = container->minishell;
-		container->cmds_mtx[i]->container = container;
+		__make_cmds_mtx_utils__(container, i);
 		if (curr)
 			curr = curr->next;
 	}
@@ -47,15 +54,6 @@ static void	__util__(t_container *container, t_node **oper, int *pr, int i)
 	t_priority	priority;
 
 	last_pr = *pr;
-	while (ft_find_set(container->minishell->set, *oper) || (!ft_check_cmp((*oper)->val, "||") && !ft_check_cmp((*oper)->val,
-			"&&")))
-	{
-		if (ft_check_cmp((*oper)->val, "("))
-			--(*pr);
-		if (ft_check_cmp((*oper)->val, ")"))
-			++(*pr);
-		*oper = (*oper)->next;
-	}
 	if (ft_check_cmp((*oper)->val, "||"))
 		node_type = OR;
 	else
@@ -81,6 +79,16 @@ static void	__make_as_tree__(t_container *container)
 	container->as_tree = init_as_tr(container->cmds_mtx[0]);
 	while (++i < container->size)
 	{
+		while (ft_find_set(container->minishell->set, oper)
+			|| (!ft_check_cmp(oper->val, "||") && !ft_check_cmp(oper->val,
+					"&&")))
+		{
+			if (ft_check_cmp(oper->val, "("))
+				--pr;
+			if (ft_check_cmp(oper->val, ")"))
+				++pr;
+			oper = oper->next;
+		}
 		__util__(container, &oper, &pr, i);
 		oper = oper->next;
 	}

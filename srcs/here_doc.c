@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:05:28 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/21 15:32:45 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:19:48 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	// printf("\n");
-	exit (130);
+	printf("\n");
+	exit(1);
 }
 
 static void	set_signals_heredoc(void)
@@ -36,7 +36,7 @@ static int	__heredoc__(char *delim, t_minishell *minishell, bool flag)
 {
 	char	*line;
 	int		fd;
-	
+
 	ft_open(&fd, ".heredoc.txt", O_CREAT | O_RDWR);
 	set_signals_heredoc();
 	while (true)
@@ -55,7 +55,8 @@ static int	__heredoc__(char *delim, t_minishell *minishell, bool flag)
 	exit(0);
 }
 
-bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell, t_node *check)
+bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell,
+		t_node *check)
 {
 	pid_t	pid;
 	int		res;
@@ -74,11 +75,7 @@ bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell, t_node *che
 		__heredoc__(delim, minishell, flag);
 	waitpid(pid, &res, 0);
 	res = WEXITSTATUS(res);
-	if (res == 130)
-	{
+	if (res == 1)
 		set_status_signed(res);
-		// return (true);
-	}
 	return (ft_open(fd, ".heredoc.txt", O_RDONLY));
 }
-

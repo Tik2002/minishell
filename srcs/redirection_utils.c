@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eval.c                                             :+:      :+:    :+:   */
+/*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:10:09 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 16:55:42 by tigpetro         ###   ########.fr       */
+/*   Created: 2024/09/09 16:22:44 by tigpetro          #+#    #+#             */
+/*   Updated: 2024/09/09 16:24:41 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	__eval_container__(t_as_tree_node *root)
+void	__redir_util__(char *print)
 {
-	if (!root)
-		return ;
-	__eval_container__(root->left);
-	if (root->node_type == OR && !get_status())
-		return ;
-	if (root->node_type == AND && get_status())
-		return ;
-	if (root->node_type == COMMAND)
-		ft_eval_commands(root->cmd_mtx);
-	__eval_container__(root->right);
-}
-
-void	ft_eval_container(t_container *container)
-{
-	__eval_container__(container->as_tree->root);
+	ft_err_msg(NULL);
+	ft_putstr_fd(print, STDERR_FILENO);
+	ft_putendl_fd(": No such file or directory", STDERR_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:01:03 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 21:01:18 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:03:12 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_set	*ft_init_set(void)
 
 bool	ft_empty_set(t_set *set)
 {
-	return (!set || !set->head);
+	return (!(set && set->head));
 }
 
 void	ft_insert_set(t_set *set, t_node *node, t_quoted quote_t)

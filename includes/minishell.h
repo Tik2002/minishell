@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/01 22:53:05 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:25:09 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ bool			ft_delim(t_minishell *minishell, char *del, char *input);
 void			ft_split_with_delim(t_list_ptr line, char *del, char *input);
 
 // handle_dollar_sign
-void			ft_resolve_dollar(t_bs_tree_ptr tree, char **val);
+bool			ft_resolve_dollar(t_bs_tree_ptr tree, char **val);
 void			ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree);
 
 // quotes
@@ -150,7 +150,9 @@ t_descriptor	*make_descriptors(void);
 void			ft_reset_descriptors(t_command *cmd);
 
 // redirection
-bool			ft_check_redirections(t_command *cmd, t_list_ptr list, t_node *check);
+bool			ft_check_redirections(t_command *cmd, t_list_ptr list,
+					t_node *check);
+void			__redir_util__(char *print);
 
 // clear
 void			ft_clear_cmds(t_command **cmd);
@@ -194,7 +196,8 @@ bool			ft_check_access(t_command *cmd, bool *flag);
 bool			ft_open(int *fd, char *filename, int option);
 
 // here_doc
-bool			ft_heredoc(int *fd, t_node *delim, t_minishell *minishell, t_node *check);
+bool			ft_heredoc(int *fd, t_node *delim, t_minishell *minishell,
+					t_node *check);
 
 // exec
 void			ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag,
