@@ -6,14 +6,21 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:39 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 16:55:56 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:09:55 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	__sort_input__(t_command *cmd, t_node **curr)
+static void	__sort_input__(t_command *cmd, t_list_ptr list, t_node **curr, t_node *check)
 {
+	if (!ft_check_redirections(cmd, list, check))
+	{
+		free(cmd->name);
+		cmd->name = NULL;
+		return ;
+	}
+	*curr = (*curr)->next;
 	while (*curr && (*curr)->val[0] == '-')
 	{
 		push_back_lt(&cmd->opts, (*curr)->val);
@@ -55,14 +62,7 @@ static t_command	*__ft_init_command__(t_minishell *minishell,
 	__cmd_name__(cmd, check);
 	if (!curr->next)
 		return (cmd);
-	if (!ft_check_redirections(cmd, list, check))
-	{
-		free(cmd->name);
-		cmd->name = NULL;
-		return (cmd);
-	}
-	curr = curr->next;
-	__sort_input__(cmd, &curr);
+	__sort_input__(cmd, list, &curr, check);
 	return (cmd);
 }
 

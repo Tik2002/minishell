@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:35:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 16:19:28 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:44:03 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ static void	__get_val__(char **val, t_bs_tree_ptr tree)
 {
 	char	*new_val;
 
+	if (ft_check_cmp(*val, " "))
+	{
+		free(*val);
+		*val = ft_strdup("$");
+		return ;
+	}
 	new_val = get_tr(tree, *val);
 	if (ft_check_cmp(*val, "?"))
 	{
@@ -94,25 +100,16 @@ bool	ft_resolve_dollar(t_bs_tree_ptr tree, char **val)
 	return (true);
 }
 
-void	ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree)
+void	ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree, t_set *set)
 {
 	t_node	*curr;
-	t_list	stack;
 
 	if (empty_lt(line))
 		return ;
-	init_lt(&stack);
 	curr = line->head;
 	while (curr)
 	{
-		if (ft_check_cmp(curr->val, "\'") || ft_check_cmp(curr->val, "\""))
-		{
-			if (!empty_lt(&stack) && ft_check_cmp(curr->val, stack.head->val))
-				pop_front_lt(&stack);
-			else if (empty_lt(&stack))
-				push_front_lt(&stack, curr->val);
-		}
-		if (empty_lt(&stack) || ft_check_cmp(stack.head->val, "\""))
+		if (!is_single_quoted(set, curr))
 			if (ft_strchr(curr->val, '$') && ft_resolve_dollar(tree,
 					&curr->val))
 				if (!*curr->val)

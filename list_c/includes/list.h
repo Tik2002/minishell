@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:43 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/09 16:13:27 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:31:46 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ bool	ft_empty_set(t_set *set);
 void	ft_insert_set(t_set *set, t_node *node, t_quoted quote_t);
 bool	ft_find_set(t_set *set, t_node *node);
 void	ft_clear_set(t_set *set);
+bool	is_single_quoted(t_set *set, t_node *node);
 
 bool	empty_lt(t_list_ptr list);
 

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:29:26 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 22:30:24 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:24:38 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	ft_delim(t_minishell *minishell, char *del, char *input)
 	ft_delete_quotes(&minishell->line, minishell->set);
 	ft_merge_input(&minishell->line, minishell->set);
 	__remove_set__(&minishell->line, minishell->set);
-	ft_handle_dollar_sign(&minishell->line, minishell->export);
+	ft_handle_dollar_sign(&minishell->line, minishell->export, minishell->set);
 	ft_wildcards(&minishell->line, minishell->set);
 	return (true);
 }

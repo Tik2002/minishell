@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/09 16:25:09 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:25:10 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void			ft_split_with_delim(t_list_ptr line, char *del, char *input);
 
 // handle_dollar_sign
 bool			ft_resolve_dollar(t_bs_tree_ptr tree, char **val);
-void			ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree);
+void			ft_handle_dollar_sign(t_list_ptr line, t_bs_tree_ptr tree, t_set *set);
 
 // quotes
 bool			ft_quotes_and_bracket_checker(t_list_ptr line);

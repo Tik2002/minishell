@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 16:15:34 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:12:09 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 	bool	flag;
 
 	i = -1;
-	while (++i < cmd_matrix->size && cmd_matrix->cmds[i]->name)
+	while (++i < cmd_matrix->size)
 	{
 		flag = false;
 		if (pipe(pips) < 0)
 			return (ft_err_msg("fork: Resource temporarily unavailable"));
-		__eval_commands__(cmd_matrix, pips, i, &flag);
+		if (cmd_matrix->cmds[i]->name)
+			__eval_commands__(cmd_matrix, pips, i, &flag);
 		if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
 			unlink(".heredoc.txt");
 		if (cmd_matrix->cmds[0]->pid == -1)
