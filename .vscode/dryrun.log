@@ -79,6 +79,7 @@ gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -
 echo "\033[1;33m Object files have been created \033[0;37m"
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/wildcard_util.c -o srcs/wildcard_util.o
 echo "\033[1;33m Object files have been created \033[0;37m"
+ 
 gcc -g -Wall -Wextra -Werror  -I./includes/  -I./libft/  -I./list_c/includes/  -I./bs_tree_c/includes/  -I./as_tree_c/includes/  -I./readline_local/include/ -c srcs/wilrdcards.c -o srcs/wilrdcards.o
 echo "\033[1;33m Object files have been created \033[0;37m"
 make -C ./libft/ all

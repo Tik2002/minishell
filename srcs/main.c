@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:52 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/09 22:42:28 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:39:22 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ int	main(int argc, char *argv[], char **env)
 	ft_init_minishell(&minishell, env);
 	ft_minishell(&minishell);
 	ft_clear_minishell(&minishell);
-	system("leaks minishell");
+	// system("leaks minishell");
 	return (get_status());
 }

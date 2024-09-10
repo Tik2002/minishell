@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:05:28 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 22:48:22 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:45:22 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	printf("\n");
 	exit(1);
 }
 
@@ -23,13 +22,11 @@ static void	set_signals_heredoc(void)
 {
 	struct sigaction	act;
 
-	// ignore_sigquit();
 	ft_memset(&act, 0, sizeof(act));
 	act.sa_handler = &signal_heredoc;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
 	disable_echoctl();
 }
 
@@ -64,6 +61,7 @@ bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell,
 	bool	flag;
 	char	*delim;
 
+	ignore_sigquit();
 	if (!delim_node->val)
 		return (false);
 	delim = delim_node->val;

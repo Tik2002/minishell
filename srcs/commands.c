@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 22:12:09 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:07:26 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,15 @@ static bool	__check_builtins__(char *name)
 
 static void	__access_error__(char *cmd)
 {
-	if (get_status() == 1)
-		return ;
 	ft_err_msg("");
 	ft_putstr_fd(cmd, STDERR_FILENO);
-	if (__check_redir__(cmd))
-		ft_putendl_fd(": command not found", STDERR_FILENO);
-	else
-		ft_putendl_fd(": no such file or directory", STDERR_FILENO);
+	ft_putendl_fd(": no such file or directory", STDERR_FILENO);
 }
 
 static bool	__check_name__(t_command *cmd)
 {
 	if (!cmd->args.head)
-		return (false);
+		return (true);
 	return (ft_check_cmp(cmd->args.head->val, ".__quoted_redirection__"));
 }
 
@@ -48,9 +43,7 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		dup2(cmd_matrix->cmds[i]->descriptor->stdin, STDIN_FILENO);
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
-	if (__check_name__(cmd_matrix->cmds[i]))
-		__access_error__(cmd_matrix->cmds[i]->name);
-	else if (!__check_redir__(cmd_matrix->cmds[i]->name))
+	if (!__check_redir__(cmd_matrix->cmds[i]->name) || __check_name__(cmd_matrix->cmds[i]))
 	{
 		if (__check_builtins__(cmd_matrix->cmds[i]->name))
 			ft_execute_builtins(cmd_matrix, i);

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:08:12 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 16:20:53 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:16:05 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*__ft_pwd__(t_bs_tree_ptr export)
 	path = wrapper_malloc(size + 1);
 	if (!getcwd(path, size))
 	{
+		free(path);
 		path = ft_strdup(get_tr(export, "PWD"));
 		ft_append(&path, "/../");
 	}

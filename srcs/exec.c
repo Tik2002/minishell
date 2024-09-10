@@ -6,11 +6,19 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/31 22:49:12 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:54:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static void	__util__(char *name, char *err)
+{
+	ft_err_msg(NULL);
+	ft_putstr_fd(name, STDERR_FILENO);
+	ft_putendl_fd(err, STDERR_FILENO);
+	set_status_unsigned(127);
+}
 
 static void	ft_execute_proc(t_command *cmd)
 {
@@ -23,16 +31,10 @@ static void	ft_execute_proc(t_command *cmd)
 	cmd_mtx = list_to_matrix_lt(&cmd->opts);
 	env = tree_to_matrix_tr(cmd->minishell->export);
 	execve(cmd_mtx[0], cmd_mtx, env);
-	exit(EXIT_FAILURE);
+	__util__(cmd_mtx[0], ": command not found");
+	exit(127);
 }
 
-static void	__util__(char *name, char *err)
-{
-	ft_err_msg(NULL);
-	ft_putstr_fd(name, STDERR_FILENO);
-	ft_putendl_fd(err, STDERR_FILENO);
-	set_status_unsigned(127);
-}
 
 static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
 {
@@ -57,6 +59,7 @@ static void	__wait_for_childs__(t_command *cmd, int *status)
 		return (set_status_unsigned(*status));
 	}
 	set_status_unsigned(WEXITSTATUS(*status));
+	// printf("status = %d\n", get_status());
 }
 
 void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)

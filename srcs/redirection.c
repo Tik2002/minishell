@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 22:09:07 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:32:35 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static bool	__check_cmp__(t_command *cmd, t_list_ptr list, t_node *check,
 {
 	t_node	*curr;
 
+	set_status_signed(0);
 	curr = (*tmp)->prev;
 	if (ft_check_cmp(curr->val, "<") || ft_check_cmp(curr->val, "<<"))
 	{
@@ -94,7 +95,6 @@ static bool	__check_cmp__(t_command *cmd, t_list_ptr list, t_node *check,
 		remove_node_lt(list, curr->next);
 		remove_node_lt(list, curr);
 	}
-	set_status_signed(0);
 	return (true);
 }
 
