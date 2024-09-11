@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:41:44 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/01/26 18:58:47 by tyavroya         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:32:43 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(char *src)
 	if (!dup)
 		return (0);
 	tmp_dup = dup;
-	while (*src)
+	while (src && *src)
 	{
 		*dup = *src;
 		++dup;

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:07:33 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/10 17:07:26 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:07:20 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static void	__eval_commands__(t_cmd_matrix *cmd_matrix, int *pips, int i,
 		dup2(cmd_matrix->cmds[i]->descriptor->stdin, STDIN_FILENO);
 	if (cmd_matrix->cmds[i]->redirection & redirect_out)
 		dup2(cmd_matrix->cmds[i]->descriptor->stdout, STDOUT_FILENO);
-	if (!__check_redir__(cmd_matrix->cmds[i]->name) || __check_name__(cmd_matrix->cmds[i]))
+	if (cmd_matrix->cmds[i]->name
+		&& (!__check_redir__(cmd_matrix->cmds[i]->name)
+			|| __check_name__(cmd_matrix->cmds[i])))
 	{
 		if (__check_builtins__(cmd_matrix->cmds[i]->name))
 			ft_execute_builtins(cmd_matrix, i);
@@ -73,8 +75,7 @@ void	ft_eval_commands(t_cmd_matrix *cmd_matrix)
 		flag = false;
 		if (pipe(pips) < 0)
 			return (ft_err_msg("fork: Resource temporarily unavailable"));
-		if (cmd_matrix->cmds[i]->name)
-			__eval_commands__(cmd_matrix, pips, i, &flag);
+		__eval_commands__(cmd_matrix, pips, i, &flag);
 		if (cmd_matrix->cmds[i]->redirection & redirect_heredoc)
 			unlink(".heredoc.txt");
 		if (cmd_matrix->cmds[0]->pid == -1)

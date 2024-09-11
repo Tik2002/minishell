@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:05:28 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/10 17:45:22 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:06:42 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	exit(1);
+	exit (1);
 }
 
 static void	set_signals_heredoc(void)
@@ -35,8 +35,8 @@ static int	__heredoc__(char *delim, t_minishell *minishell, bool flag)
 	char	*line;
 	int		fd;
 
-	ft_open(&fd, ".heredoc.txt", O_CREAT | O_RDWR);
 	set_signals_heredoc();
+	ft_open(&fd, ".heredoc.txt", O_CREAT | O_RDWR);
 	while (true)
 	{
 		line = readline("here_doc> ");

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/10 16:54:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:07:43 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	ft_execute_proc(t_command *cmd)
 	exit(127);
 }
 
-
 static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
 {
 	while (--index >= 0)
@@ -59,12 +58,11 @@ static void	__wait_for_childs__(t_command *cmd, int *status)
 		return (set_status_unsigned(*status));
 	}
 	set_status_unsigned(WEXITSTATUS(*status));
-	// printf("status = %d\n", get_status());
 }
 
 void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 {
-	int		status;
+	int	status;
 
 	if (!*flag || cmd_mtx->cmds[index]->name[0] == '.')
 	{

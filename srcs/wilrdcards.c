@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:59:04 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/01 19:27:44 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:02:38 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	ft_wildcards(t_list_ptr line, t_set *set)
 			if (curr->prev && __check__(set, curr->prev))
 			{
 				ft_err_msg("*: ambiguous redirect");
-				remove_node_lt(line, curr->prev);
+				free(curr->prev->val);
+				curr->prev->val = ft_strdup("__ambiguous__");
 				remove_node_lt(line, curr);
 			}
 			else if (curr->prev && !ft_check_cmp(curr->prev->val, "<<"))

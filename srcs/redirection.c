@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/10 16:32:35 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:08:57 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ bool	ft_check_redirections(t_command *cmd, t_list_ptr list, t_node *check)
 			if (curr->next && *curr->next->val)
 				__redir_util__(curr->next->val);
 			set_status_unsigned(1);
-			// return (false);
 		}
 		curr = tmp;
 		if (!curr)

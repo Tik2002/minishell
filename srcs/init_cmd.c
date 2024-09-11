@@ -6,15 +6,17 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:37:39 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/09 22:09:55 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:07:51 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	__sort_input__(t_command *cmd, t_list_ptr list, t_node **curr, t_node *check)
+static void	__sort_input__(t_command *cmd, t_list_ptr list, t_node **curr,
+		t_node *check)
 {
-	if (!ft_check_redirections(cmd, list, check))
+	if (ft_check_cmp((*curr)->next->val, "__ambiguous__")
+		|| !ft_check_redirections(cmd, list, check))
 	{
 		free(cmd->name);
 		cmd->name = NULL;
