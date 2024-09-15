@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 22:03:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/15 16:52:48 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:04:22 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_clear_minishell(t_minishell *minishell)
 {
+	if (minishell->container)
+		ft_clear_container(&minishell->container);
 	clear_lt(&minishell->history);
 	if (minishell->set)
 	{

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:52 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/10 19:08:06 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:59:42 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int			g_status;
 
 static void	__ft_minishell__(t_minishell *minishell, char *input)
 {
-	t_container	*container;
-
 	minishell->set = ft_init_set();
 	if (!ft_delim(minishell, "<>| \'\"()&", input))
 		return ;
@@ -26,10 +24,10 @@ static void	__ft_minishell__(t_minishell *minishell, char *input)
 	if (!ft_check_syntax(&minishell->line, minishell->set)
 		|| empty_lt(&minishell->line))
 		return (set_status_unsigned(get_status()));
-	container = ft_init_container(minishell);
-	ft_init_command(container);
-	ft_eval_container(container);
-	ft_clear_container(&container);
+	minishell->container = ft_init_container(minishell);
+	ft_init_command(minishell->container);
+	ft_eval_container(minishell->container);
+	ft_clear_container(&minishell->container);
 	ft_clear_set(minishell->set);
 	free(minishell->set);
 	minishell->set = NULL;

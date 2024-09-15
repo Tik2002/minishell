@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:05:28 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/15 16:49:52 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:01:46 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	set_status_signed(1);
+	exit(1);
 }
 
 static void	set_signals_heredoc(void)

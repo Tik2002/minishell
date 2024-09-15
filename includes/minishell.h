@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/10 19:09:50 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:59:00 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ struct						s_minishell
 	t_set					*set;
 	t_bs_tree_ptr			export;
 	t_descriptor			*descriptor;
+	t_container				*container;
 };
 
 struct						s_command

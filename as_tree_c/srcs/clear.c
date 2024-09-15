@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 17:05:53 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/21 15:41:26 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:05:34 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ static void	__clear_tr__(t_as_tree_node *root)
 
 void	clear_as_tr(t_as_tree_ptr tree)
 {
-	__clear_tr__(tree->root);
+	if (tree)
+		__clear_tr__(tree->root);
 }
