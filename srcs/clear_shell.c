@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 22:03:42 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/15 16:51:53 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:52:48 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_clear_minishell(t_minishell *minishell)
 	}
 	free(minishell->descriptor);
 	clear_tr(minishell->export);
-	free(export);
+	free(minishell->export);
 	clear_lt(&minishell->line);
 }
 
