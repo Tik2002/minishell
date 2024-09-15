@@ -14,7 +14,7 @@
 
 static void	__make_cmds_mtx_utils__(t_container *container, int i)
 {
-	container->cmds_mtx[i]->cmds = wrapper_malloc(sizeof(t_command)
+	container->cmds_mtx[i]->cmds = ft_calloc(1, sizeof(t_command)
 			* (container->cmds_mtx[i]->size + 1));
 	container->cmds_mtx[i]->cmds[container->cmds_mtx[i]->size] = NULL;
 	container->cmds_mtx[i]->minishell = container->minishell;

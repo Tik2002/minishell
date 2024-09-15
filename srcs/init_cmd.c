@@ -12,26 +12,29 @@
 
 #include <minishell.h>
 
-static void	__sort_input__(t_command *cmd, t_list_ptr list, t_node **curr,
-		t_node *check)
+static void	__sort_input__(t_command *cmd, t_node *check)
 {
-	if (ft_check_cmp((*curr)->next->val, "__ambiguous__")
-		|| !ft_check_redirections(cmd, list, check))
+	t_node	*curr;
+
+	if (ft_check_cmp(cmd->minishell->tmp.head->next->val, "__ambiguous__")
+		|| !ft_check_redirections(cmd, &cmd->minishell->tmp, check))
 	{
 		free(cmd->name);
 		cmd->name = NULL;
 		return ;
 	}
-	*curr = (*curr)->next;
-	while (*curr && (*curr)->val[0] == '-')
+	if (!cmd->minishell->tmp.head || !cmd->minishell->tmp.head->next)
+		return ;
+	curr = cmd->minishell->tmp.head->next;
+	while (curr && curr->val[0] == '-')
 	{
-		push_back_lt(&cmd->opts, (*curr)->val);
-		*curr = (*curr)->next;
+		push_back_lt(&cmd->opts, curr->val);
+		curr = curr->next;
 	}
-	while (*curr)
+	while (curr)
 	{
-		push_back_lt(&cmd->args, (*curr)->val);
-		*curr = (*curr)->next;
+		push_back_lt(&cmd->args, curr->val);
+		curr = curr->next;
 	}
 }
 
@@ -46,46 +49,41 @@ static void	__cmd_name__(t_command *cmd, t_node *check)
 	}
 }
 
-static t_command	*__ft_init_command__(t_minishell *minishell,
-		t_list_ptr list, t_node *check)
+static t_command	*__ft_init_command__(t_minishell *minishell, t_node *check)
 {
 	t_command	*cmd;
-	t_node		*curr;
 
-	cmd = wrapper_malloc(sizeof(t_command));
+	cmd = ft_calloc(1, sizeof(t_command));
 	cmd->descriptor = make_descriptors();
 	cmd->redirection = 0;
 	cmd->minishell = minishell;
 	cmd->pid = -2;
 	init_lt(&cmd->args);
 	init_lt(&cmd->opts);
-	curr = list->head;
-	cmd->name = ft_strdup(curr->val);
+	cmd->name = ft_strdup(minishell->tmp.head->val);
 	__cmd_name__(cmd, check);
-	if (!curr->next)
+	if (!minishell->tmp.head->next)
 		return (cmd);
-	__sort_input__(cmd, list, &curr, check);
+	__sort_input__(cmd, check);
 	return (cmd);
 }
 
 static void	__init_command__(t_cmd_matrix *cmd_matrix, t_node *curr,
 		t_node *end)
 {
-	t_list	list;
 	t_node	*tail;
 	int		i;
 
 	i = -1;
-	init_lt(&list);
+	init_lt(&cmd_matrix->minishell->tmp);
 	while (++i < cmd_matrix->size)
 	{
 		tail = find_word_range_lt(curr, end, "|", cmd_matrix->minishell->set);
-		copy_range_lt(&list, curr, tail);
-		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, &list,
-				curr);
+		copy_range_lt(&cmd_matrix->minishell->tmp, curr, tail);
+		cmd_matrix->cmds[i] = __ft_init_command__(cmd_matrix->minishell, curr);
 		if (tail)
 			curr = tail->next;
-		clear_lt(&list);
+		clear_lt(&cmd_matrix->minishell->tmp);
 	}
 }
 

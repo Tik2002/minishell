@@ -54,6 +54,7 @@ struct						s_descriptor
 struct						s_minishell
 {
 	t_list					line;
+	t_list					tmp;
 	t_list					history;
 	t_set					*set;
 	t_bs_tree_ptr			export;
@@ -198,7 +199,7 @@ bool			ft_check_access(t_command *cmd, bool *flag);
 bool			ft_open(int *fd, char *filename, int option);
 
 // here_doc
-bool			ft_heredoc(int *fd, t_node *delim, t_minishell *minishell,
+bool			ft_heredoc(int *fd, t_node *delim, t_command *cmd,
 					t_node *check);
 
 // exec

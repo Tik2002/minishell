@@ -16,6 +16,7 @@
 		"utility": "c",
 		"vector": "c",
 		"readline.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"sigaction.h": "c"
 	}
 }

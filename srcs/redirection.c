@@ -38,7 +38,7 @@ static bool	__redirect_in__(t_command *cmd, t_node *curr, t_node *check)
 	}
 	else
 	{
-		if (!ft_heredoc(&fd, curr->next, cmd->minishell, check))
+		if (!ft_heredoc(&fd, curr->next, cmd, check))
 			return (false);
 		close(cmd->descriptor->stdin);
 		cmd->descriptor->stdin = fd;

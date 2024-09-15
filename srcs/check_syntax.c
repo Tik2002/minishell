@@ -56,6 +56,14 @@ bool	ft_check_syntax(t_list_ptr line, t_set *set)
 	set_status_signed(258);
 	if (!__check__(line, set))
 		return (false);
+	if (__check_cmp__(line->head->val) && !ft_find_set(set, line->head))
+	{
+		ft_err_msg("");
+		ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
+		ft_putstr_fd(line->head->val, STDERR_FILENO);
+		ft_putendl_fd("'", STDERR_FILENO);
+		return (false);
+	}
 	if ((__check_cmp__(line->tail->val) || __check_redir__(line->tail->val))
 		&& !ft_find_set(set, line->tail))
 	{

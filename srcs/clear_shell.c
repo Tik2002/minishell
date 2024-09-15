@@ -16,13 +16,14 @@ void	ft_clear_minishell(t_minishell *minishell)
 {
 	if (minishell->container)
 		ft_clear_container(&minishell->container);
-	clear_lt(&minishell->history);
 	if (minishell->set)
 	{
 		ft_clear_set(minishell->set);
 		free(minishell->set);
 		minishell->set = NULL;
 	}
+	clear_lt(&minishell->history);
+	clear_lt(&minishell->tmp);
 	free(minishell->descriptor);
 	clear_tr(minishell->export);
 	free(minishell->export);
@@ -53,7 +54,12 @@ void	ft_clear_cmds_matrix(t_cmd_matrix **mtx)
 	i = -1;
 	tmp = *mtx;
 	while (++i < tmp->size)
-		ft_clear_cmds(&tmp->cmds[i]);
+	{
+		if (tmp->cmds[i])
+			ft_clear_cmds(&tmp->cmds[i]);
+		free(tmp->cmds[i]);
+		tmp->cmds[i] = NULL;
+	}
 	free(tmp->cmds);
 	tmp->cmds = NULL;
 	tmp->size = 0;
@@ -69,7 +75,8 @@ void	ft_clear_container(t_container **container)
 	i = -1;
 	while (++i < tmp->size)
 	{
-		ft_clear_cmds_matrix(&tmp->cmds_mtx[i]);
+		if (tmp->cmds_mtx[i])
+			ft_clear_cmds_matrix(&tmp->cmds_mtx[i]);
 		free(tmp->cmds_mtx[i]);
 		tmp->cmds_mtx[i] = NULL;
 	}
@@ -81,5 +88,5 @@ void	ft_clear_container(t_container **container)
 	tmp->as_tree = NULL;
 	tmp->minishell = NULL;
 	free(tmp);
-	tmp = NULL;
+	*container = NULL;
 }

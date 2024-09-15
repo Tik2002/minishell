@@ -14,23 +14,28 @@
 
 int			g_status;
 
+static void	__clear__set__(t_minishell *minishell)
+{
+	ft_clear_set(minishell->set);
+	free(minishell->set);
+	minishell->set = NULL;
+}
+
 static void	__ft_minishell__(t_minishell *minishell, char *input)
 {
 	minishell->set = ft_init_set();
 	if (!ft_delim(minishell, "<>| \'\"()&", input))
-		return ;
+		return (__clear__set__(minishell));
 	add_history(input);
 	ft_add_history(&minishell->history, input);
 	if (!ft_check_syntax(&minishell->line, minishell->set)
 		|| empty_lt(&minishell->line))
-		return (set_status_unsigned(get_status()));
+		return (__clear__set__(minishell), set_status_unsigned(get_status()));
 	minishell->container = ft_init_container(minishell);
 	ft_init_command(minishell->container);
 	ft_eval_container(minishell->container);
 	ft_clear_container(&minishell->container);
-	ft_clear_set(minishell->set);
-	free(minishell->set);
-	minishell->set = NULL;
+	__clear__set__(minishell);
 }
 
 static void	ft_minishell(t_minishell *minishell)

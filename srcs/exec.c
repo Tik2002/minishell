@@ -20,7 +20,17 @@ static void	__util__(char *name, char *err)
 	set_status_unsigned(127);
 }
 
-static void	ft_execute_proc(t_command *cmd)
+static void	________(char **mtx)
+{
+	int	i;
+
+	i = 0;
+	while(mtx && mtx[i])
+		free(mtx[i++]);
+	free(mtx);
+}
+
+static void	ft_execute_proc(t_command *cmd, t_minishell *minishell)
 {
 	char	**cmd_mtx;
 	char	**env;
@@ -32,6 +42,9 @@ static void	ft_execute_proc(t_command *cmd)
 	env = tree_to_matrix_tr(cmd->minishell->export);
 	execve(cmd_mtx[0], cmd_mtx, env);
 	__util__(cmd_mtx[0], ": command not found");
+	ft_clear_minishell(minishell);
+	________(cmd_mtx);
+	________(env);
 	exit(127);
 }
 
@@ -71,13 +84,14 @@ void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 		if (!*flag || !ft_check_script(cmd_mtx->cmds[index]->name))
 			return ;
 	}
+	*flag = false;
 	cmd_mtx->cmds[index]->pid = fork();
 	if (cmd_mtx->cmds[index]->pid < 0)
 		return (__fork_error__(cmd_mtx, index));
 	if (cmd_mtx->cmds[index]->pid == 0)
 	{
 		close(pips[in]);
-		ft_execute_proc(cmd_mtx->cmds[index]);
+		ft_execute_proc(cmd_mtx->cmds[index], cmd_mtx->minishell);
 	}
 	if (index == cmd_mtx->size - 1)
 	{

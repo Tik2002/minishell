@@ -12,10 +12,36 @@
 
 #include <minishell.h>
 
+#ifdef __linux__
+#include <bits/sigaction.h>
+#include <asm-generic/signal-defs.h>
+#endif //__linux__
+
+static void	__cleaner__(t_command *cmd, int fd, bool flag, int status)
+{
+	static int			_fd;
+	static t_command	*_cmd;
+	t_minishell			*minishell;
+
+	if (!flag)
+	{
+		_cmd = cmd;
+		_fd = fd;
+	}
+	else
+	{
+		minishell = _cmd->minishell;
+		close(_fd);
+		ft_clear_cmds(&_cmd);
+		ft_clear_minishell(minishell);
+		exit (status);
+	}
+}
+
 static void	signal_heredoc(int unused)
 {
 	(void)unused;
-	exit(1);
+	__cleaner__(0, 0, true, 1);
 }
 
 static void	set_signals_heredoc(void)
@@ -30,30 +56,30 @@ static void	set_signals_heredoc(void)
 	disable_echoctl();
 }
 
-static int	__heredoc__(char *delim, t_minishell *minishell, bool flag)
+static void	__heredoc__(char *delim, t_command *cmd, bool flag)
 {
 	char	*line;
 	int		fd;
 
 	set_signals_heredoc();
 	ft_open(&fd, ".heredoc.txt", O_CREAT | O_RDWR);
-	while (get_status() != 1)
+	__cleaner__(cmd, fd, false, 0);
+	while (true)
 	{
 		line = readline("here_doc> ");
 		if (!line || ft_check_cmp(line, delim))
 			break ;
 		if (flag)
-			ft_resolve_dollar(minishell->export, &line);
+			ft_resolve_dollar(cmd->minishell->export, &line);
 		ft_append(&line, "\n");
 		ft_putstr_fd(line, fd);
 		free(line);
 	}
 	free(line);
-	close(fd);
-	exit(get_status());
+	__cleaner__(0, 0, true, 0);
 }
 
-bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell,
+bool	ft_heredoc(int *fd, t_node *delim_node, t_command *cmd,
 		t_node *check)
 {
 	pid_t	pid;
@@ -65,13 +91,13 @@ bool	ft_heredoc(int *fd, t_node *delim_node, t_minishell *minishell,
 	if (!delim_node->val)
 		return (false);
 	delim = delim_node->val;
-	flag = !ft_find_set(minishell->set, check);
+	flag = !ft_find_set(cmd->minishell->set, check);
 	pid = fork();
 	res = 0;
 	if (pid == -1)
 		ft_err_msg("here_doc fork error");
 	if (pid == 0)
-		__heredoc__(delim, minishell, flag);
+		__heredoc__(delim, cmd, flag);
 	waitpid(pid, &res, 0);
 	res = WEXITSTATUS(res);
 	if (res == 1)

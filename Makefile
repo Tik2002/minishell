@@ -81,4 +81,7 @@ config:
 	mkdir -p readline_local
 	./readline_config.sh readline_local
 
+leaks : all
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=.vlgignore ./${NAME}
+#
 .PHONY : all clean fclean re config
