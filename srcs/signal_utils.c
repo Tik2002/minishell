@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   signal_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 19:53:16 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/08/16 20:01:32 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:27:02 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ignore_sigquit(void)
 void	signal_reset_prompt(int sig)
 {
 	(void)sig;
+	set_status_signed(1);
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Sep 15 16:44:53 2024
+# Make data base, printed on Mon Sep 16 21:20:18 2024
 
 # Variables
 
@@ -17,7 +17,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # environment
-VSCODE_LOG_NATIVE = false
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -29,7 +29,7 @@ CURDIR := /Users/tigpetro/Desktop/42cursus/minishell
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 18)
@@ -38,29 +38,22 @@ CFLAGS = -g -Wall -Wextra -Werror $(foreach H, $(INCLPATH), -I$(H))
 AS_TREE = $(AS_TREEPATH)as_tree.a
 # makefile (from `Makefile', line 31)
 BS_TREE = $(BS_TREEPATH)bs_tree.a
- 
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# environment
-VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 10)
 LISTPATH = ./list_c/
 # makefile (from `Makefile', line 16)
 OBJS = $(patsubst $(SRCSPATH)%.c, $(SRCSPATH)%.o, $(SRCS))
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cjk40034cj/T/vscode-ipc-90ea167c-c179-42d7-b217-c7f1143c4069.sock
-# environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.QXwL2MdXiA/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.3JoRiVW4eG/Render
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from `Makefile', line 33)
 NAME = minishell
-# environment
-VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 12)
@@ -72,11 +65,9 @@ BS_TREEPATH = ./bs_tree_c/
 # environment
 LS_COLORS = di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.EDOgPXNkU3/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.D0CoiCnQhH/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /Users/tigpetro/Desktop/42cursus/minishell
 # environment
@@ -84,13 +75,13 @@ ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # makefile (from `Makefile', line 2)
 GREEN = \033[1;32m
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /Users/tigpetro
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/tigpetro/Library/Application Support/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
+VSCODE_CODE_CACHE_PATH = /Users/tigpetro/Library/Application Support/Code/CachedData/af28b32d7e553898b2a91af498b1fb666fdebe0c
 # environment
 LOGNAME = tigpetro
 # environment
@@ -148,7 +139,9 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cjk40034cj/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/tigpetro/Library/Application Support/Code/1.63.2-main.sock
+VSCODE_IPC_HOOK = /Users/tigpetro/Library/Application Support/Code/1.85-main.sock
+# environment
+MallocNanoZone = 0
 # makefile (from `Makefile', line 1)
 RED = \033[1;31m
 # makefile
@@ -160,7 +153,7 @@ MFLAGS = -Rrqp
 # environment
 TERM_PROGRAM_VERSION = 3.2.5
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2540
+XPC_SERVICE_NAME = com.microsoft.VSCode.2936
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 3)
@@ -173,6 +166,8 @@ ITERM_SESSION_ID = w0t0p0:71B12CA7-FDBC-48CA-BD53-5A74B84C9E8D
 COLORFGBG = 7;0
 # environment
 __CF_USER_TEXT_ENCODING = 0x19191:0:0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # makefile (from `Makefile', line 8)
@@ -183,12 +178,15 @@ SRCSPATH = ./srcs/
 ITERM_PROFILE = Default
 # makefile (from `Makefile', line 9)
 LIBFTPATH = ./libft/
+ 
 # environment
 PAGER = less
 # environment
 LC_ALL = C
 # makefile (from `Makefile', line 4)
 RESET = \033[0;37m
+# environment
+SECURITYSESSIONID = 186bc
 # automatic
 ^F = $(notdir $^)
 # default
@@ -206,9 +204,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 8050
+VSCODE_PID = 21523
 # variable set hash-table stats:
-# Load=97/1024=9%, Rehash=0, Collisions=7/149=5%
+# Load=96/1024=9%, Rehash=0, Collisions=7/148=5%
 
 # Pattern-specific Variable Values
 
@@ -216,12 +214,11 @@ VSCODE_PID = 8050
 
 # Directories
 
-# . (device 16777224, inode 1712289): 17 files, no impossibilities.
- 
+# . (device 16777224, inode 1712289): 16 files, no impossibilities.
 # ./srcs (device 16777224, inode 1712756): 82 files, no impossibilities.
 # srcs (device 16777224, inode 1712756): 82 files, no impossibilities.
 
-# 181 files, no impossibilities in 3 directories.
+# 180 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -247,7 +244,7 @@ srcs/status.c:
 srcs/history.o: srcs/history.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `history'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -260,7 +257,7 @@ srcs/history.o: srcs/history.c
 # Not a target:
 srcs/init_minishell.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-15 16:58:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -305,7 +302,7 @@ srcs/get_path.c:
 srcs/signal_utils.o: srcs/signal_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `signal_utils'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -356,7 +353,7 @@ all: minishell
 srcs/pwd.o: srcs/pwd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `pwd'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -374,7 +371,7 @@ srcs/pwd.o: srcs/pwd.c
 srcs/cd.o: srcs/cd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `cd'
-#  Last modified 2024-09-15 16:38:57
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -387,7 +384,7 @@ srcs/cd.o: srcs/cd.c
 # Not a target:
 srcs/init_cmd.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -395,7 +392,7 @@ srcs/init_cmd.c:
 
 list_c/list.a:
 #  Implicit rule search has not been done.
-#  Last modified 2024-09-15 16:39:01
+#  Last modified 2024-09-15 17:16:33
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 47):
@@ -406,7 +403,7 @@ list_c/list.a:
 # Not a target:
 srcs/check_syntax.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -424,7 +421,7 @@ srcs/open.c:
 # Not a target:
 srcs/redirection.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -433,7 +430,7 @@ srcs/redirection.c:
 srcs/wildcard_util.o: srcs/wildcard_util.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `wildcard_util'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -446,7 +443,7 @@ srcs/wildcard_util.o: srcs/wildcard_util.c
 srcs/echo.o: srcs/echo.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `echo'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -459,7 +456,7 @@ srcs/echo.o: srcs/echo.c
 srcs/eval.o: srcs/eval.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `eval'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -472,7 +469,8 @@ srcs/eval.o: srcs/eval.c
 srcs/check_script.o: srcs/check_script.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `check_script'
-#  Last modified 2024-09-15 16:38:58
+ 
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -491,21 +489,20 @@ srcs/check_script.o: srcs/check_script.c
 srcs/export.o: srcs/export.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `export'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 59):
 	@$(CC) $(CFLAGS) -c $< -o $@
- 
 	@echo "$(YELLOW) Object files have been created $(RESET)"
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:51
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -514,7 +511,7 @@ Makefile:
 srcs/clear_shell.o: srcs/clear_shell.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `clear_shell'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -536,7 +533,7 @@ srcs/signal_noninteractive.c:
 srcs/commands.o: srcs/commands.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `commands'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -558,7 +555,7 @@ srcs/quotes.c:
 srcs/utils.o: srcs/utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -580,7 +577,7 @@ srcs/history.c:
 srcs/init_container.o: srcs/init_container.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init_container'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -601,7 +598,7 @@ srcs/signal_utils.c:
 
 minishell: srcs/access.o srcs/append.o srcs/builtins.o srcs/cd.o srcs/check_script.o srcs/check_syntax.o srcs/clear_shell.o srcs/commands.o srcs/delimitors.o srcs/descriptor.o srcs/echo.o srcs/env.o srcs/eval.o srcs/exec.o srcs/exit.o srcs/export.o srcs/get_path.o srcs/handle_dollar_sign.o srcs/here_doc.o srcs/history.o srcs/init_cmd.o srcs/init_container.o srcs/init_minishell.o srcs/key_utils.o srcs/main.o srcs/merge_input.o srcs/open.o srcs/pwd.o srcs/quotes.o srcs/redirection.o srcs/redirection_utils.o srcs/signal_interactive.o srcs/signal_noninteractive.o srcs/signal_utils.o srcs/split_with_delimitors.o srcs/status.o srcs/unset.o srcs/utils.o srcs/wildcard_util.o srcs/wilrdcards.o libft/libft.a list_c/list.a bs_tree_c/bs_tree.a as_tree_c/as_tree.a
 #  Implicit rule search has not been done.
-#  Last modified 2024-09-15 16:39:01
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -614,7 +611,7 @@ minishell: srcs/access.o srcs/append.o srcs/builtins.o srcs/cd.o srcs/check_scri
 srcs/merge_input.o: srcs/merge_input.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `merge_input'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -627,7 +624,7 @@ srcs/merge_input.o: srcs/merge_input.c
 srcs/split_with_delimitors.o: srcs/split_with_delimitors.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `split_with_delimitors'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -640,7 +637,7 @@ srcs/split_with_delimitors.o: srcs/split_with_delimitors.c
 srcs/descriptor.o: srcs/descriptor.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `descriptor'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -652,7 +649,7 @@ srcs/descriptor.o: srcs/descriptor.c
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2024-09-15 16:39:00
+#  Last modified 2024-09-15 17:16:33
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 43):
@@ -663,7 +660,7 @@ libft/libft.a:
 srcs/signal_interactive.o: srcs/signal_interactive.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `signal_interactive'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -699,7 +696,7 @@ fclean: clean
 srcs/exec.o: srcs/exec.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -715,13 +712,14 @@ srcs/cd.c:
 #  Last modified 2024-09-15 16:37:52
 #  File has been updated.
 #  Successfully updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 srcs/redirection_utils.o: srcs/redirection_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `redirection_utils'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -734,21 +732,28 @@ srcs/redirection_utils.o: srcs/redirection_utils.c
 srcs/builtins.o: srcs/builtins.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins'
-#  Last modified 2024-09-15 16:38:57
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
- 
 #  commands to execute (from `Makefile', line 59):
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(YELLOW) Object files have been created $(RESET)"
 	
 
+leaks: all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 85):
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=.vlgignore ./${NAME}
+	
+
 srcs/here_doc.o: srcs/here_doc.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `here_doc'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -761,7 +766,7 @@ srcs/here_doc.o: srcs/here_doc.c
 # Not a target:
 srcs/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -770,7 +775,7 @@ srcs/main.c:
 srcs/delimitors.o: srcs/delimitors.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `delimitors'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -792,7 +797,7 @@ srcs/wildcard_util.c:
 srcs/env.o: srcs/env.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `env'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -814,7 +819,7 @@ srcs/echo.c:
 srcs/exit.o: srcs/exit.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exit'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -851,7 +856,7 @@ srcs/export.c:
 srcs/access.o: srcs/access.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `access'
-#  Last modified 2024-09-15 16:38:57
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -864,7 +869,7 @@ srcs/access.o: srcs/access.c
 # Not a target:
 srcs/clear_shell.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -888,7 +893,7 @@ re: fclean all
 srcs/status.o: srcs/status.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `status'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -915,7 +920,7 @@ clean:
 srcs/init_minishell.o: srcs/init_minishell.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init_minishell'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -928,7 +933,7 @@ srcs/init_minishell.o: srcs/init_minishell.c
 srcs/key_utils.o: srcs/key_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_utils'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -941,7 +946,7 @@ srcs/key_utils.o: srcs/key_utils.c
 srcs/handle_dollar_sign.o: srcs/handle_dollar_sign.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `handle_dollar_sign'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -954,7 +959,7 @@ srcs/handle_dollar_sign.o: srcs/handle_dollar_sign.c
 srcs/wilrdcards.o: srcs/wilrdcards.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `wilrdcards'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -967,20 +972,21 @@ srcs/wilrdcards.o: srcs/wilrdcards.c
 srcs/get_path.o: srcs/get_path.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `get_path'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 59):
 	@$(CC) $(CFLAGS) -c $< -o $@
+ 
 	@echo "$(YELLOW) Object files have been created $(RESET)"
 	
 
 srcs/unset.o: srcs/unset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `unset'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -993,7 +999,7 @@ srcs/unset.o: srcs/unset.c
 # Not a target:
 srcs/init_container.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1002,13 +1008,12 @@ srcs/init_container.c:
 srcs/append.o: srcs/append.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `append'
-#  Last modified 2024-09-15 16:38:57
+#  Last modified 2024-09-15 17:16:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 59):
- 
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(YELLOW) Object files have been created $(RESET)"
 	
@@ -1061,7 +1066,7 @@ srcs/eval.c:
 srcs/init_cmd.o: srcs/init_cmd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init_cmd'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1074,7 +1079,7 @@ srcs/init_cmd.o: srcs/init_cmd.c
 srcs/check_syntax.o: srcs/check_syntax.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `check_syntax'
-#  Last modified 2024-09-15 16:38:58
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1087,7 +1092,7 @@ srcs/check_syntax.o: srcs/check_syntax.c
 # Not a target:
 srcs/exec.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1096,7 +1101,7 @@ srcs/exec.c:
 srcs/open.o: srcs/open.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `open'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1117,7 +1122,7 @@ srcs/redirection_utils.c:
 
 as_tree_c/as_tree.a:
 #  Implicit rule search has not been done.
-#  Last modified 2024-09-15 16:39:01
+#  Last modified 2024-09-15 17:16:34
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 55):
@@ -1137,7 +1142,7 @@ srcs/utils.c:
 srcs/redirection.o: srcs/redirection.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `redirection'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1159,7 +1164,7 @@ srcs/builtins.c:
 # Not a target:
 srcs/here_doc.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-16 21:10:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1186,7 +1191,7 @@ srcs/env.c:
 # Not a target:
 srcs/exit.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-09-15 16:37:52
+#  Last modified 2024-09-15 17:01:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1195,7 +1200,7 @@ srcs/exit.c:
 srcs/main.o: srcs/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-16 21:10:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1208,7 +1213,7 @@ srcs/main.o: srcs/main.c
 srcs/signal_noninteractive.o: srcs/signal_noninteractive.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `signal_noninteractive'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1220,7 +1225,7 @@ srcs/signal_noninteractive.o: srcs/signal_noninteractive.c
 
 bs_tree_c/bs_tree.a:
 #  Implicit rule search has not been done.
-#  Last modified 2024-09-15 16:39:01
+#  Last modified 2024-09-15 17:16:33
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 51):
@@ -1240,7 +1245,7 @@ srcs/access.c:
 srcs/quotes.o: srcs/quotes.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `quotes'
-#  Last modified 2024-09-15 16:38:59
+#  Last modified 2024-09-15 17:16:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1251,7 +1256,8 @@ srcs/quotes.o: srcs/quotes.c
 	
 
 # files hash-table stats:
-# Load=94/1024=9%, Rehash=0, Collisions=12/280=4%
+# Load=95/1024=9%, Rehash=0, Collisions=12/282=4%
+ 
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -1263,6 +1269,6 @@ srcs/quotes.o: srcs/quotes.c
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Sep 15 16:44:53 2024
+# Finished Make data base on Mon Sep 16 21:20:18 2024
 
  
