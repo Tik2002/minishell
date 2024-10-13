@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/15 16:59:00 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:08:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ enum						e_direct
 	redirect_heredoc = 8
 };
 
-struct						s_descriptor
+struct						a_descriptor
 {
 	int						stdout;
 	int						stdin;
