@@ -6,15 +6,15 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:05:28 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/15 17:01:46 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:19:34 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 #ifdef __linux__
-#include <bits/sigaction.h>
-#include <asm-generic/signal-defs.h>
+# include <bits/sigaction.h>
+# include <asm-generic/signal-defs.h>
 #endif //__linux__
 
 static void	__cleaner__(t_command *cmd, int fd, bool flag, int status)
@@ -34,6 +34,7 @@ static void	__cleaner__(t_command *cmd, int fd, bool flag, int status)
 		close(_fd);
 		ft_clear_cmds(&_cmd);
 		ft_clear_minishell(minishell);
+		system("leaks minishell");
 		exit (status);
 	}
 }

@@ -17,6 +17,8 @@
 		"vector": "c",
 		"readline.h": "c",
 		"minishell.h": "c",
-		"sigaction.h": "c"
+		"sigaction.h": "c",
+		"wchar.h": "c",
+		"sstream": "c"
 	}
 }

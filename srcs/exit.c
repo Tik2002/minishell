@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:13:50 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/15 17:01:20 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:19:15 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void	__exit__(int status, char *msg, t_container *container, int size)
 	if (size > 1)
 		return ;
 	ft_clear_minishell(container->minishell);
+	write(2, "exit\n", 5);
+	system("leaks minishell");
 	exit(get_status());
 }
 

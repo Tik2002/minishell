@@ -6,26 +6,18 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:09:44 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/09/10 19:07:43 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:20:37 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static void	__util__(char *name, char *err)
-{
-	ft_err_msg(NULL);
-	ft_putstr_fd(name, STDERR_FILENO);
-	ft_putendl_fd(err, STDERR_FILENO);
-	set_status_unsigned(127);
-}
 
 static void	________(char **mtx)
 {
 	int	i;
 
 	i = 0;
-	while(mtx && mtx[i])
+	while (mtx && mtx[i])
 		free(mtx[i++]);
 	free(mtx);
 }
@@ -41,23 +33,12 @@ static void	ft_execute_proc(t_command *cmd, t_minishell *minishell)
 	cmd_mtx = list_to_matrix_lt(&cmd->opts);
 	env = tree_to_matrix_tr(cmd->minishell->export);
 	execve(cmd_mtx[0], cmd_mtx, env);
-	__util__(cmd_mtx[0], ": command not found");
+	__exec_util__(cmd_mtx[0], ": command not found");
 	ft_clear_minishell(minishell);
 	________(cmd_mtx);
 	________(env);
+	system("leaks minishell");
 	exit(127);
-}
-
-static void	__fork_error__(t_cmd_matrix *cmd_mtx, int index)
-{
-	while (--index >= 0)
-	{
-		if (cmd_mtx->cmds[index]->pid > -2)
-			kill(cmd_mtx->cmds[index]->pid, SIGKILL);
-		waitpid(cmd_mtx->cmds[index]->pid, NULL, 0);
-		cmd_mtx->cmds[index]->pid = -1;
-	}
-	__util__("fork", ": Resource temporarily unavailable");
 }
 
 static void	__wait_for_childs__(t_command *cmd, int *status)
@@ -80,7 +61,7 @@ void	ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag, int *pips)
 	if (!*flag || cmd_mtx->cmds[index]->name[0] == '.')
 	{
 		if (!*flag)
-			__util__(cmd_mtx->cmds[index]->name, ": command not found");
+			__exec_util__(cmd_mtx->cmds[index]->name, ": command not found");
 		if (!*flag || !ft_check_script(cmd_mtx->cmds[index]->name))
 			return ;
 	}

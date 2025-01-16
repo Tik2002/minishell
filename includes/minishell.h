@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 17:25:55 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/23 20:08:39 by tigpetro         ###   ########.fr       */
+/*   Created: 2024/07/25 17:25:55 by tigpetro          #+#    #+#             */
+/*   Updated: 2025/01/15 19:20:57 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ enum						e_direct
 	redirect_heredoc = 8
 };
 
-struct						a_descriptor
+struct						s_descriptor
 {
 	int						stdout;
 	int						stdin;
@@ -205,6 +205,10 @@ bool			ft_heredoc(int *fd, t_node *delim, t_command *cmd,
 // exec
 void			ft_execute(t_cmd_matrix *cmd_mtx, int index, bool *flag,
 					int *pips);
+
+// exec_utils
+void			__fork_error__(t_cmd_matrix *cmd_mtx, int index);
+void			__exec_util__(char *name, char *err);
 
 // echo
 void			ft_echo(t_command *cmd);

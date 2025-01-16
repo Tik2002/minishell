@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 22:07:40 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/07/31 22:09:45 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:18:14 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	_err(const char *msg)
 {
 	printf("%s\n", msg);
+	system("leaks minishell");
 	exit(EXIT_FAILURE);
 }

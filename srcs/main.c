@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 17:25:52 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/09/15 16:59:42 by tigpetro         ###   ########.fr       */
+/*   Created: 2024/07/25 17:25:52 by tigpetro          #+#    #+#             */
+/*   Updated: 2025/01/15 19:21:51 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	ft_minishell(t_minishell *minishell)
 		{
 			if (!input)
 			{
-				printf("exit\n");
+				write(2, "exit\n", 5);
 				break ;
 			}
 			free(input);
@@ -73,5 +73,6 @@ int	main(int argc, char *argv[], char **env)
 	ft_init_minishell(&minishell, env);
 	ft_minishell(&minishell);
 	ft_clear_minishell(&minishell);
+	system("leaks minishell");
 	return (get_status());
 }
